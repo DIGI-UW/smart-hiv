@@ -84,7 +84,7 @@ library HIVIND20Logic
 // Included Libraries
 using FHIR version '4.0.1'
 
-include HIVCommon version '0.0.1' called HIC
+include HIVCommon called HIC
 include FHIRHelpers version '4.0.1'
 include WHOCommon called WCom
 
