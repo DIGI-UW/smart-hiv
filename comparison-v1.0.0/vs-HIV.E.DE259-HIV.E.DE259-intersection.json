@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-864",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-864",
+  "name" : "IntersectionHIVEDE259AndHIVEDE259",
+  "title" : "Intersection of Urine protein test result ValueSet And Urine protein test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE260",
+        "display" : "0"
+      },
+      {
+        "code" : "HIV.E.DE261",
+        "display" : "+"
+      },
+      {
+        "code" : "HIV.E.DE262",
+        "display" : "++"
+      },
+      {
+        "code" : "HIV.E.DE263",
+        "display" : "+++"
+      }]
+    }]
+  }
+}

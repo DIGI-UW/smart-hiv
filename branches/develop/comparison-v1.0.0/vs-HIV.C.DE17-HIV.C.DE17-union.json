@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-371",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-371",
+  "name" : "UnionHIVCDE17AndHIVCDE17",
+  "title" : "Union of Current PrEP regimen ValueSet And Current PrEP regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE18",
+        "display" : "TDF + FTC"
+      },
+      {
+        "code" : "HIV.C.DE19",
+        "display" : "TDF"
+      },
+      {
+        "code" : "HIV.C.DE20",
+        "display" : "TDF + 3TC"
+      },
+      {
+        "code" : "HIV.C.DE21",
+        "display" : "Other TDF-based regimen"
+      },
+      {
+        "code" : "HIV.C.DE22",
+        "display" : "Dapivirine vaginal ring (DVR)"
+      },
+      {
+        "code" : "HIV.C.DE23",
+        "display" : "CAB-LA"
+      }]
+    }]
+  }
+}

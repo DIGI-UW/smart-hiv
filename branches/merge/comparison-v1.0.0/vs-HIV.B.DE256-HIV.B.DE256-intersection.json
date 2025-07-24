@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-258",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-258",
+  "name" : "IntersectionHIVBDE256AndHIVBDE256",
+  "title" : "Intersection of Gonorrhoea test result ValueSet And Gonorrhoea test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE257",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.B.DE258",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.B.DE259",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

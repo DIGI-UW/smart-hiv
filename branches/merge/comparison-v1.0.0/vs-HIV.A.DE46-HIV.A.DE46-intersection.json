@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-177",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-177",
+  "name" : "IntersectionHIVADE46AndHIVADE46",
+  "title" : "Intersection of Communication preference(s) ValueSet And Communication preference(s) ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.A.DE47",
+        "display" : "Text message/SMS"
+      },
+      {
+        "code" : "HIV.A.DE48",
+        "display" : "Voice call"
+      }]
+    }]
+  }
+}

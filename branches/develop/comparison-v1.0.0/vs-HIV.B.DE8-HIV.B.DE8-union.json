@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-317",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-317",
+  "name" : "UnionHIVBDE8AndHIVBDE8",
+  "title" : "Union of Type of contact or partner for partner services ValueSet And Type of contact or partner for partner services ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE9",
+        "display" : "Biological child"
+      },
+      {
+        "code" : "HIV.B.DE10",
+        "display" : "Drug-injecting partner"
+      },
+      {
+        "code" : "HIV.B.DE11",
+        "display" : "Sexual partner"
+      },
+      {
+        "code" : "HIV.B.DE12",
+        "display" : "Social contact"
+      }]
+    }]
+  }
+}

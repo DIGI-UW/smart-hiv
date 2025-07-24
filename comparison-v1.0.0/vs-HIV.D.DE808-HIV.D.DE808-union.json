@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-698",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-698",
+  "name" : "UnionHIVDDE808AndHIVDDE808",
+  "title" : "Union of Gonorrhoea test result ValueSet And Gonorrhoea test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE809",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.D.DE810",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.D.DE811",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

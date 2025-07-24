@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-783",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-783",
+  "name" : "IntersectionHIVEDE114AndHIVEDE114",
+  "title" : "Intersection of Key population member type ValueSet And Key population member type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE115",
+        "display" : "Sex worker"
+      },
+      {
+        "code" : "HIV.E.DE116",
+        "display" : "People who inject drugs"
+      },
+      {
+        "code" : "HIV.E.DE117",
+        "display" : "Trans and gender-diverse people"
+      },
+      {
+        "code" : "HIV.E.DE118",
+        "display" : "People living in prisons and other closed setting"
+      }]
+    }]
+  }
+}

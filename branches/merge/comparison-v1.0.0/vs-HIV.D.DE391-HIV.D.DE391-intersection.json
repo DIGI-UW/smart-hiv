@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-501",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-501",
+  "name" : "IntersectionHIVDDE391AndHIVDDE391",
+  "title" : "Intersection of Reason for HIV viral load test ValueSet And Reason for HIV viral load test ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE392",
+        "display" : "Routine viral load test"
+      },
+      {
+        "code" : "HIV.D.DE393",
+        "display" : "Targeted viral load monitoring"
+      },
+      {
+        "code" : "HIV.D.DE394",
+        "display" : "Initial viral load test"
+      },
+      {
+        "code" : "HIV.D.DE395",
+        "display" : "Follow-up viral load test after receiving enhanced adherence counselling"
+      }]
+    }]
+  }
+}

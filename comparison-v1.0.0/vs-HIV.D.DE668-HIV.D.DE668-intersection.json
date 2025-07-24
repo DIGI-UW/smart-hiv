@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-630",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-630",
+  "name" : "IntersectionHIVDDE668AndHIVDDE668",
+  "title" : "Intersection of VIA cervical cancer screening test result ValueSet And VIA cervical cancer screening test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE669",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.D.DE670",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.D.DE671",
+        "display" : "Suspected cancer"
+      },
+      {
+        "code" : "HIV.D.DE672",
+        "display" : "Invalid"
+      }]
+    }]
+  }
+}

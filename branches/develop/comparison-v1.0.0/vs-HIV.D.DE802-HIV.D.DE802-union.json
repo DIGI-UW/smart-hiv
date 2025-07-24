@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-695",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-695",
+  "name" : "UnionHIVDDE802AndHIVDDE802",
+  "title" : "Union of Syphilis test result ValueSet And Syphilis test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE803",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.D.DE804",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.D.DE805",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-938",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-938",
+  "name" : "UnionHIVHDE23AndHIVHDE23",
+  "title" : "Union of Outcome from outreach attempt ValueSet And Outcome from outreach attempt ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.H.DE24",
+        "display" : "Returning to clinic"
+      },
+      {
+        "code" : "HIV.H.DE25",
+        "display" : "Self-transferred out"
+      },
+      {
+        "code" : "HIV.H.DE26",
+        "display" : "Hospitalized"
+      },
+      {
+        "code" : "HIV.H.DE27",
+        "display" : "Refused to return"
+      },
+      {
+        "code" : "HIV.H.DE28",
+        "display" : "Not located"
+      },
+      {
+        "code" : "HIV.H.DE29",
+        "display" : "Died (reported)"
+      }]
+    }]
+  }
+}

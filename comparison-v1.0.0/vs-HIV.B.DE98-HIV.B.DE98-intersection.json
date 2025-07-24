@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-330",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-330",
+  "name" : "IntersectionHIVBDE98AndHIVBDE98",
+  "title" : "Intersection of Test result of HIV assay 2 ValueSet And Test result of HIV assay 2 ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE99",
+        "display" : "Reactive"
+      },
+      {
+        "code" : "HIV.B.DE100",
+        "display" : "Non-reactive"
+      },
+      {
+        "code" : "HIV.B.DE101",
+        "display" : "Invalid"
+      }]
+    }]
+  }
+}

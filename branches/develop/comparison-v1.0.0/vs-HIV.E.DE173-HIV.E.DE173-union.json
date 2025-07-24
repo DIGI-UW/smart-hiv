@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-809",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-809",
+  "name" : "UnionHIVEDE173AndHIVEDE173",
+  "title" : "Union of Maternal and child health service visit ValueSet And Maternal and child health service visit ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE174",
+        "display" : "12-month visit"
+      },
+      {
+        "code" : "HIV.E.DE175",
+        "display" : "24-month visit"
+      },
+      {
+        "code" : "HIV.E.DE176",
+        "display" : "First visit after the end of breastfeeding"
+      }]
+    }]
+  }
+}

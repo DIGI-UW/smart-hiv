@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-714",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-714",
+  "name" : "IntersectionHIVDDE828AndHIVDDE828",
+  "title" : "Intersection of Neisseria gonorrhoeae test type ValueSet And Neisseria gonorrhoeae test type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE829",
+        "display" : "NAAT"
+      },
+      {
+        "code" : "HIV.D.DE830",
+        "display" : "POC Test"
+      },
+      {
+        "code" : "HIV.D.DE831",
+        "display" : "Culture"
+      },
+      {
+        "code" : "HIV.D.DE832",
+        "display" : "Microscopy"
+      },
+      {
+        "code" : "HIV.D.DE833",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

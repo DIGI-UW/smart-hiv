@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-573",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-573",
+  "name" : "IntersectionHIVDDE525AndHIVDDE525",
+  "title" : "Intersection of Type of follow-up appointment ValueSet And Type of follow-up appointment ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE526",
+        "display" : "Clinical visit"
+      },
+      {
+        "code" : "HIV.D.DE527",
+        "display" : "Antiretroviral drug pick up"
+      },
+      {
+        "code" : "HIV.D.DE528",
+        "display" : "Post-treatment follow-up visit for cervical precancer lesions or invasive cervical cancer"
+      },
+      {
+        "code" : "HIV.D.DE529",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

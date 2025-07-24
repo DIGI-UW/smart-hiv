@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-312",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-312",
+  "name" : "IntersectionHIVBDE68AndHIVBDE68",
+  "title" : "Intersection of HIV serotype ValueSet And HIV serotype ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE69",
+        "display" : "HIV-1"
+      },
+      {
+        "code" : "HIV.B.DE70",
+        "display" : "HIV-2"
+      }]
+    }]
+  }
+}

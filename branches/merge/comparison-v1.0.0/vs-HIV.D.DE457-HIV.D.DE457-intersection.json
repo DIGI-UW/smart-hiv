@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-525",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-525",
+  "name" : "IntersectionHIVDDE457AndHIVDDE457",
+  "title" : "Intersection of Medications prescribed ValueSet And Medications prescribed ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE458",
+        "display" : "Date medications prescribed"
+      },
+      {
+        "code" : "HIV.D.DE459",
+        "display" : "Dose of medications prescribed"
+      },
+      {
+        "code" : "HIV.D.DE460",
+        "display" : "Number of days medications prescribed"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-288",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-288",
+  "name" : "IntersectionHIVBDE325AndHIVBDE325",
+  "title" : "Intersection of Confirmatory STI test result ValueSet And Confirmatory STI test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE326",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.B.DE327",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.B.DE328",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

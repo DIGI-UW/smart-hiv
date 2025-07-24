@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-437",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-437",
+  "name" : "UnionHIVDDE146AndHIVDDE146",
+  "title" : "Union of ART regimen drug class ValueSet And ART regimen drug class ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE147",
+        "display" : "NRTI"
+      },
+      {
+        "code" : "HIV.D.DE148",
+        "display" : "NtRTI"
+      },
+      {
+        "code" : "HIV.D.DE149",
+        "display" : "NNRTI"
+      },
+      {
+        "code" : "HIV.D.DE150",
+        "display" : "PI"
+      },
+      {
+        "code" : "HIV.D.DE151",
+        "display" : "INSTI"
+      }]
+    }]
+  }
+}

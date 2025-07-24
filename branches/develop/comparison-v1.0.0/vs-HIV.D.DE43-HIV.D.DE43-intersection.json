@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-510",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-510",
+  "name" : "IntersectionHIVDDE43AndHIVDDE43",
+  "title" : "Intersection of ART start type ValueSet And ART start type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE44",
+        "display" : "First-time user of ART"
+      },
+      {
+        "code" : "HIV.D.DE45",
+        "display" : "Restarting ART"
+      }]
+    }]
+  }
+}

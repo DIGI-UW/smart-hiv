@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-378",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-378",
+  "name" : "IntersectionHIVCDE31AndHIVCDE31",
+  "title" : "Intersection of PEP history ValueSet And PEP history ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE32",
+        "display" : "First-time user"
+      },
+      {
+        "code" : "HIV.C.DE33",
+        "display" : "Repeat user"
+      }]
+    }]
+  }
+}

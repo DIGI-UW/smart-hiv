@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-618",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-618",
+  "name" : "IntersectionHIVDDE646AndHIVDDE646",
+  "title" : "Intersection of Reason malaria prophylaxis not provided ValueSet And Reason malaria prophylaxis not provided ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE647",
+        "display" : "Client was referred"
+      },
+      {
+        "code" : "HIV.D.DE648",
+        "display" : "Stock out"
+      },
+      {
+        "code" : "HIV.D.DE649",
+        "display" : "Expired"
+      },
+      {
+        "code" : "HIV.D.DE650",
+        "display" : "Other reason not provided"
+      }]
+    }]
+  }
+}

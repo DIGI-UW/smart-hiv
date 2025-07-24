@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-518",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-518",
+  "name" : "UnionHIVDDE446AndHIVDDE446",
+  "title" : "Union of Coinfection status at ART start ValueSet And Coinfection status at ART start ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE447",
+        "display" : "Hepatitis B"
+      },
+      {
+        "code" : "HIV.D.DE448",
+        "display" : "Hepatitis C"
+      }]
+    }]
+  }
+}

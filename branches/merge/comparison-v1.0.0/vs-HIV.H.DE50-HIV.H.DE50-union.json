@@ -1,0 +1,17 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-947",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-947",
+  "name" : "UnionHIVHDE50AndHIVHDE50",
+  "title" : "Union of Transfer to facility ValueSet And Transfer to facility ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.H.DE51",
+        "display" : "Date of transfer out"
+      }]
+    }]
+  }
+}

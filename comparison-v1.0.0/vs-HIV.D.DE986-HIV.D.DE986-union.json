@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-770",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-770",
+  "name" : "UnionHIVDDE986AndHIVDDE986",
+  "title" : "Union of TB screening result ValueSet And TB screening result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE987",
+        "display" : "Screen positive for TB"
+      },
+      {
+        "code" : "HIV.D.DE988",
+        "display" : "Screen negative for TB"
+      },
+      {
+        "code" : "HIV.D.DE989",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

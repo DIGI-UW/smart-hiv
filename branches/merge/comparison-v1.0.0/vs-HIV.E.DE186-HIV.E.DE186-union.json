@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-818",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-818",
+  "name" : "UnionHIVEDE186AndHIVEDE186",
+  "title" : "Union of EID test number 1 test result ValueSet And EID test number 1 test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE187",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.E.DE188",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.E.DE189",
+        "display" : "Indeterminate"
+      }]
+    }]
+  }
+}

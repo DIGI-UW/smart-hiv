@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-795",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-795",
+  "name" : "IntersectionHIVEDE145AndHIVEDE145",
+  "title" : "Intersection of Maternal HIV status at first ANC visit ValueSet And Maternal HIV status at first ANC visit ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE146",
+        "display" : "HIV-positive"
+      },
+      {
+        "code" : "HIV.E.DE147",
+        "display" : "HIV-negative"
+      },
+      {
+        "code" : "HIV.E.DE148",
+        "display" : "Unknown"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-522",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-522",
+  "name" : "IntersectionHIVDDE449AndHIVDDE449",
+  "title" : "Intersection of Pregnant and breastfeeding status at ART start ValueSet And Pregnant and breastfeeding status at ART start ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE450",
+        "display" : "Pregnant at ART start"
+      },
+      {
+        "code" : "HIV.D.DE451",
+        "display" : "Postpartum at ART start"
+      },
+      {
+        "code" : "HIV.D.DE452",
+        "display" : "ART start at labour and delivery"
+      },
+      {
+        "code" : "HIV.D.DE453",
+        "display" : "Breastfeeding at ART start"
+      }]
+    }]
+  }
+}

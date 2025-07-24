@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-957",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-957",
+  "name" : "IntersectionHIVIDE2AndHIVIDE2",
+  "title" : "Intersection of Reason for referral ValueSet And Reason for referral ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.I.DE3",
+        "display" : "Hospital"
+      },
+      {
+        "code" : "HIV.I.DE4",
+        "display" : "Referral for screening including diagnostics and lab testing"
+      },
+      {
+        "code" : "HIV.I.DE5",
+        "display" : "TB referral"
+      },
+      {
+        "code" : "HIV.I.DE6",
+        "display" : "Antenatal care referral"
+      },
+      {
+        "code" : "HIV.I.DE7",
+        "display" : "Referral for other general services"
+      }]
+    }]
+  }
+}

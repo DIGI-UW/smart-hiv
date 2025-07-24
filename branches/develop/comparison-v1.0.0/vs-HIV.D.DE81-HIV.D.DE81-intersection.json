@@ -1,0 +1,9 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-702",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-702",
+  "name" : "IntersectionHIVDDE81AndHIVDDE81",
+  "title" : "Intersection of Alternative second-line ART regimen ValueSet And Alternative second-line ART regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00"
+}

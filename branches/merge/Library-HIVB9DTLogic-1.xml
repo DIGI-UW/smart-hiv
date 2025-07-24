@@ -1,0 +1,1433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:t name="DecisionID" value="HIV.B9.DT.HIV Re-testing Recommendations"/>
+      <a:t name="BusinessRule" value="HIV restesting recommendations"/>
+      <a:t name="Trigger" value="HIV.B9 Determine recommended services"/>
+      <a:t name="HitPolicy" value="Rule order"/>
+      <a:t name="Description" value="Determine retest recommendation&#xa;&#xa;Data Concepts:&#xa;HIV.B.DE115: HIV status | HIV status reported after applying the national HIV testing algorithm. No single HIV test can provide an HIV-positive diagnosis.&#xa;HIV.B.DE33: Partner HIV status (reported) | The HIV status of the client's partner.&#xa;HIV.C.DE55: Sex partner's HIV treatment status | Treatment adherence of client's sex partner for partners that are HIV-positive&#xa;HIV.Config.DE12: HIV burden of the setting | HIV burden of the setting (high or low) based on the national HIV prevalence or where the HIV prevalence and/or incidence in a geographical setting is higher than national prevalence and, therefore, needs priority in the HIV response&#xa;HIV.B.DE49: Key population member | Client is a member of a key population that has an increased risk of HIV&#xa;HIV.B.DE29: Currently pregnant | Client is currently pregnant&#xa;HIV.D.DE939: TB diagnosis result | Final result of the TB investigation (bacteriological and/or clinical)&#xa;HIV.D.DE282: Presumptive TB | Client's comorbidities or coinfections or symptoms of these include presumptive TB&#xa;HIV.C.DE10: Currently on PrEP | The client is currently taking PrEP. Oral pre-exposure prophylaxis (PrEP) of HIV is the use of ARV drugs by people who are not infected with HIV to block the acquisition of HIV.&#xa;HIV.B.DE225: At elevated risk for HIV acquisition | Client is at elevated risk for HIV acquisition"/>
+      <a:s r="380">
+         <a:s>/*
+Library: HIV.B9.DT Logic
+
+@DecisionID: HIV.B9.DT.HIV Re-testing Recommendations
+@BusinessRule: HIV restesting recommendations
+@Trigger: HIV.B9 Determine recommended services
+@HitPolicy: Rule order
+@Description: Determine retest recommendation
+
+Data Concepts:
+ * HIV.B.DE115: HIV status | HIV status reported after applying the national HIV testing algorithm. No single HIV test can provide an HIV-positive diagnosis.
+ * HIV.B.DE33: Partner HIV status (reported) | The HIV status of the client's partner.
+ * HIV.C.DE55: Sex partner's HIV treatment status | Treatment adherence of client's sex partner for partners that are HIV-positive
+ * HIV.Config.DE12: HIV burden of the setting | HIV burden of the setting (high or low) based on the national HIV prevalence or where the HIV prevalence and/or incidence in a geographical setting is higher than national prevalence and, therefore, needs priority in the HIV response
+ * HIV.B.DE49: Key population member | Client is a member of a key population that has an increased risk of HIV
+ * HIV.B.DE29: Currently pregnant | Client is currently pregnant
+ * HIV.D.DE939: TB diagnosis result | Final result of the TB investigation (bacteriological and/or clinical)
+ * HIV.D.DE282: Presumptive TB | Client's comorbidities or coinfections or symptoms of these include presumptive TB
+ * HIV.C.DE10: Currently on PrEP | The client is currently taking PrEP. Oral pre-exposure prophylaxis (PrEP) of HIV is the use of ARV drugs by people who are not infected with HIV to block the acquisition of HIV.
+ * HIV.B.DE225: At elevated risk for HIV acquisition | Client is at elevated risk for HIV acquisition
+*/
+library HIVB9DTLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="HIVB9DTLogic" system="http://smart.who.int/hiv"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="25:1-25:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>// Included Libraries
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="27:1-27:47" localIdentifier="Common" path="http://smart.who.int/hiv/HIVCommon" version="0.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVCommon</a:s>
+               </a:s>
+               <a:s> version '0.0.1' called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="28:1-28:35" localIdentifier="Concepts" path="http://smart.who.int/hiv/HIVConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="29:1-29:31" localIdentifier="Config" path="http://smart.who.int/hiv/HIVConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVConfig</a:s>
+               </a:s>
+               <a:s> called Config</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="30:1-30:44" localIdentifier="Elements" path="http://smart.who.int/hiv/HIVEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVEncounterElements</a:s>
+               </a:s>
+               <a:s> called Elements</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="211" locator="31:1-31:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="33:1-33:29" localIdentifier="WCom" path="http://smart.who.int/hiv/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="213" locator="35:1-35:30" localIdentifier="WCx" path="http://smart.who.int/hiv/WHOConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="213">
+               <a:s>// Included for PlanDefinition
+include </a:s>
+               <a:s>
+                  <a:s>WHOConcepts</a:s>
+               </a:s>
+               <a:s> called WCx</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="36:1-36:40" localIdentifier="WElm" path="http://smart.who.int/hiv/WHOEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOEncounterElements</a:s>
+               </a:s>
+               <a:s> called WElm</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="215" locator="38:1-38:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="215">
+               <a:s>parameter Today </a:s>
+               <a:s r="219">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="218">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="218" locator="38:30-38:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="219" locator="38:17-38:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="223" locator="40:1-40:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="221" locator="40:1-40:15" name="Patient" context="Patient">
+         <expression localId="222" xsi:type="SingletonFrom">
+            <operand localId="220" locator="40:1-40:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="225" locator="46:1-49:39" name="HIV status negative or unknown" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;HIV status negative or unknown&quot;"/>
+            <a:t name="pseudocode" value="&quot;HIV status&quot; IN 'HIV-negative', 'Unknown'"/>
+            <a:s r="225">
+               <a:s>/*
+  @input: &quot;HIV status negative or unknown&quot;
+  @pseudocode: &quot;HIV status&quot; IN 'HIV-negative', 'Unknown'
+  */
+define &quot;HIV status negative or unknown&quot;:
+  </a:s>
+               <a:s r="226">
+                  <a:s>exists</a:s>
+                  <a:s r="255">
+                     <a:s>(</a:s>
+                     <a:s r="255">
+                        <a:s>
+                           <a:s r="227">
+                              <a:s r="229">
+                                 <a:s>
+                                    <a:s>Elements.&quot;HIV Status Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> S</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="230">
+                           <a:s>where </a:s>
+                           <a:s r="230">
+                              <a:s r="231">
+                                 <a:s r="233">
+                                    <a:s r="232">
+                                       <a:s>S</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="233">
+                                       <a:s>value</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> ~ </a:s>
+                                 <a:s r="235">
+                                    <a:s r="234">
+                                       <a:s>Concepts</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="235">
+                                       <a:s>&quot;HIV-negative&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+       or </a:s>
+                              <a:s r="243">
+                                 <a:s r="245">
+                                    <a:s r="244">
+                                       <a:s>S</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="245">
+                                       <a:s>value</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> ~ </a:s>
+                                 <a:s r="247">
+                                    <a:s r="246">
+                                       <a:s>Concepts</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="247">
+                                       <a:s>&quot;Unknown&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="226" locator="47:3-49:39" xsi:type="Exists">
+            <operand localId="255" locator="47:9-49:39" xsi:type="Query">
+               <source localId="227" locator="47:10-47:44" alias="S">
+                  <expression localId="229" locator="47:10-47:42" name="HIV Status Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="230" locator="48:5-49:38" xsi:type="Or">
+                  <operand localId="231" locator="48:11-48:43" xsi:type="Equivalent">
+                     <signature localId="241" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <signature localId="242" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="237" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="236" asType="fhir:CodeableConcept" xsi:type="As">
+                           <operand localId="233" locator="48:11-48:17" path="value" scope="S" xsi:type="Property"/>
+                        </operand>
+                     </operand>
+                     <operand localId="239" xsi:type="ToConcept">
+                        <signature localId="240" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="235" locator="48:21-48:43" name="HIV-negative" libraryName="Concepts" xsi:type="CodeRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="243" locator="49:11-49:38" xsi:type="Equivalent">
+                     <signature localId="253" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <signature localId="254" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="249" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="248" asType="fhir:CodeableConcept" xsi:type="As">
+                           <operand localId="245" locator="49:11-49:17" path="value" scope="S" xsi:type="Property"/>
+                        </operand>
+                     </operand>
+                     <operand localId="251" xsi:type="ToConcept">
+                        <signature localId="252" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="247" locator="49:21-49:38" name="Unknown" libraryName="Concepts" xsi:type="CodeRef"/>
+                     </operand>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="257" locator="55:1-57:44" name="Partner HIV positive" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;Partner HIV reported positive&quot;"/>
+            <a:t name="pseudocode" value="&quot;Partner HIV status (reported)&quot;='HIV-positive'"/>
+            <a:s r="257">
+               <a:s>/*
+  @input: &quot;Partner HIV reported positive&quot;
+  @pseudocode: &quot;Partner HIV status (reported)&quot;='HIV-positive'
+  */
+define &quot;Partner HIV positive&quot;:
+  </a:s>
+               <a:s r="258">
+                  <a:s>exists</a:s>
+                  <a:s r="274">
+                     <a:s>(</a:s>
+                     <a:s r="274">
+                        <a:s>
+                           <a:s r="259">
+                              <a:s r="261">
+                                 <a:s>
+                                    <a:s>Elements.&quot;Partner HIV status reported Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="262">
+                           <a:s>where </a:s>
+                           <a:s r="262">
+                              <a:s r="264">
+                                 <a:s r="263">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="264">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> ~ </a:s>
+                              <a:s r="266">
+                                 <a:s r="265">
+                                    <a:s>Concepts</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="266">
+                                    <a:s>&quot;HIV-positive&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="258" locator="56:3-57:44" xsi:type="Exists">
+            <operand localId="274" locator="56:9-57:44" xsi:type="Query">
+               <source localId="259" locator="56:10-56:61" alias="O">
+                  <expression localId="261" locator="56:10-56:59" name="Partner HIV status reported Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="262" locator="57:5-57:43" xsi:type="Equivalent">
+                  <signature localId="272" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="273" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="268" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="267" asType="fhir:CodeableConcept" xsi:type="As">
+                        <operand localId="264" locator="57:11-57:17" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="270" xsi:type="ToConcept">
+                     <signature localId="271" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="266" locator="57:21-57:43" name="HIV-positive" libraryName="Concepts" xsi:type="CodeRef"/>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="276" locator="63:1-65:65" name="Sex partner's HIV treatment status is partner not virally suppressed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;Sex partner's HIV treatment status is partner not virally suppressed&quot;"/>
+            <a:t name="pseudocode" value="&quot;Sex partner's HIV treatment status&quot;='Partner is not virally suppressed'"/>
+            <a:s r="276">
+               <a:s>/*
+  @input: &quot;Sex partner's HIV treatment status is partner not virally suppressed&quot;
+  @pseudocode: &quot;Sex partner's HIV treatment status&quot;='Partner is not virally suppressed'
+  */
+define &quot;Sex partner's HIV treatment status is partner not virally suppressed&quot;:
+  </a:s>
+               <a:s r="277">
+                  <a:s>exists</a:s>
+                  <a:s r="293">
+                     <a:s>(</a:s>
+                     <a:s r="293">
+                        <a:s>
+                           <a:s r="278">
+                              <a:s r="280">
+                                 <a:s>
+                                    <a:s>Elements.&quot;Sex partners HIV treatment status&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="281">
+                           <a:s>where </a:s>
+                           <a:s r="281">
+                              <a:s r="283">
+                                 <a:s r="282">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="283">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> ~ </a:s>
+                              <a:s r="285">
+                                 <a:s r="284">
+                                    <a:s>Concepts</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="285">
+                                    <a:s>&quot;Partner is not virally suppressed&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="277" locator="64:3-65:65" xsi:type="Exists">
+            <operand localId="293" locator="64:9-65:65" xsi:type="Query">
+               <source localId="278" locator="64:10-64:55" alias="O">
+                  <expression localId="280" locator="64:10-64:53" name="Sex partners HIV treatment status" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="281" locator="65:5-65:64" xsi:type="Equivalent">
+                  <signature localId="291" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="292" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="287" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="286" asType="fhir:CodeableConcept" xsi:type="As">
+                        <operand localId="283" locator="65:11-65:17" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="289" xsi:type="ToConcept">
+                     <signature localId="290" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="285" locator="65:21-65:64" name="Partner is not virally suppressed" libraryName="Concepts" xsi:type="CodeRef"/>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="295" locator="71:1-72:69" name="HIV burden of setting is high HIV burden setting" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;HIV burden of setting is high HIV burden setting&quot;"/>
+            <a:t name="pseudocode" value="&quot;HIV burden of the setting&quot;='High HIV burden setting'"/>
+            <a:s r="295">
+               <a:s>/*
+  @input: &quot;HIV burden of setting is high HIV burden setting&quot;
+  @pseudocode: &quot;HIV burden of the setting&quot;='High HIV burden setting'
+  */
+define &quot;HIV burden of setting is high HIV burden setting&quot;:
+  </a:s>
+               <a:s r="296">
+                  <a:s r="298">
+                     <a:s r="297">
+                        <a:s>Config</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="298">
+                        <a:s>&quot;HIV burden of setting&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> ~ </a:s>
+                  <a:s r="300">
+                     <a:s r="299">
+                        <a:s>Concepts</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="300">
+                        <a:s>&quot;High HIV burden setting&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="296" locator="72:3-72:69" xsi:type="Equivalent">
+            <signature localId="301" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="302" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="298" locator="72:3-72:32" name="HIV burden of setting" libraryName="Config" xsi:type="ExpressionRef"/>
+            <operand localId="300" locator="72:36-72:69" name="High HIV burden setting" libraryName="Concepts" xsi:type="CodeRef"/>
+         </expression>
+      </def>
+      <def localId="304" locator="78:1-79:68" name="HIV burden of setting is low HIV burden setting" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;HIV burden of setting is low HIV burden setting&quot;"/>
+            <a:t name="pseudocode" value="&quot;HIV burden of the setting&quot;='Low HIV burden setting'"/>
+            <a:s r="304">
+               <a:s>/*
+  @input: &quot;HIV burden of setting is low HIV burden setting&quot;
+  @pseudocode: &quot;HIV burden of the setting&quot;='Low HIV burden setting'
+  */
+define &quot;HIV burden of setting is low HIV burden setting&quot;:
+  </a:s>
+               <a:s r="305">
+                  <a:s r="307">
+                     <a:s r="306">
+                        <a:s>Config</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="307">
+                        <a:s>&quot;HIV burden of setting&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> ~ </a:s>
+                  <a:s r="309">
+                     <a:s r="308">
+                        <a:s>Concepts</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="309">
+                        <a:s>&quot;Low HIV burden setting&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="305" locator="79:3-79:68" xsi:type="Equivalent">
+            <signature localId="310" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="311" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="307" locator="79:3-79:32" name="HIV burden of setting" libraryName="Config" xsi:type="ExpressionRef"/>
+            <operand localId="309" locator="79:36-79:68" name="Low HIV burden setting" libraryName="Concepts" xsi:type="CodeRef"/>
+         </expression>
+      </def>
+      <def localId="313" locator="85:1-86:37" name="Key population member" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;Key population member&quot;"/>
+            <a:t name="pseudocode" value="&quot;Key population member&quot; = TRUE"/>
+            <a:s r="313">
+               <a:s>/*
+  @input: &quot;Key population member&quot;
+  @pseudocode: &quot;Key population member&quot; = TRUE
+  */
+define &quot;Key population member&quot;:
+  </a:s>
+               <a:s r="315">
+                  <a:s r="314">
+                     <a:s>Elements</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="315">
+                     <a:s>&quot;Is Key population member&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="315" locator="86:3-86:37" name="Is Key population member" libraryName="Elements" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="317" locator="92:1-93:37" name="Currently pregnant" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;Currently pregnant&quot;"/>
+            <a:t name="pseudocode" value="&quot;Currently pregnant&quot;=True"/>
+            <a:s r="317">
+               <a:s>/*
+  @input: &quot;Currently pregnant&quot;
+  @pseudocode: &quot;Currently pregnant&quot;=True
+  */
+define &quot;Currently pregnant&quot;:
+  </a:s>
+               <a:s r="318">
+                  <a:s>exists</a:s>
+                  <a:s r="320">
+                     <a:s>(</a:s>
+                     <a:s r="320">
+                        <a:s r="319">
+                           <a:s>WElm</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="320">
+                           <a:s>&quot;Pregnant Observation&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="318" locator="93:3-93:37" xsi:type="Exists">
+            <operand localId="320" locator="93:9-93:37" name="Pregnant Observation" libraryName="WElm" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="322" locator="99:1-101:44" name="TB diagnosis result is diagnosed TB" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;TB diagnosis result is diagnosed TB&quot;"/>
+            <a:t name="pseudocode" value="&quot;Currently pregnant&quot;=True"/>
+            <a:s r="322">
+               <a:s>/*
+  @input: &quot;TB diagnosis result is diagnosed TB&quot;
+  @pseudocode: &quot;Currently pregnant&quot;=True
+  */
+define &quot;TB diagnosis result is diagnosed TB&quot;:
+  </a:s>
+               <a:s r="323">
+                  <a:s>exists</a:s>
+                  <a:s r="339">
+                     <a:s>(</a:s>
+                     <a:s r="339">
+                        <a:s>
+                           <a:s r="324">
+                              <a:s r="326">
+                                 <a:s>
+                                    <a:s>Elements.&quot;TB diagnosis result&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="327">
+                           <a:s>where </a:s>
+                           <a:s r="327">
+                              <a:s r="329">
+                                 <a:s r="328">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="329">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> ~ </a:s>
+                              <a:s r="331">
+                                 <a:s r="330">
+                                    <a:s>Concepts</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="331">
+                                    <a:s>&quot;Diagnosed TB&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="323" locator="100:3-101:44" xsi:type="Exists">
+            <operand localId="339" locator="100:9-101:44" xsi:type="Query">
+               <source localId="324" locator="100:10-100:41" alias="O">
+                  <expression localId="326" locator="100:10-100:39" name="TB diagnosis result" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="327" locator="101:5-101:43" xsi:type="Equivalent">
+                  <signature localId="337" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="338" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="333" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="332" asType="fhir:CodeableConcept" xsi:type="As">
+                        <operand localId="329" locator="101:11-101:17" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="335" xsi:type="ToConcept">
+                     <signature localId="336" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="331" locator="101:21-101:43" name="Diagnosed TB" libraryName="Concepts" xsi:type="CodeRef"/>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="341" locator="107:1-109:26" name="Presumptive TB" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;Presumptive TB&quot;"/>
+            <a:t name="pseudocode" value="&quot;Presumptive TB&quot;=True"/>
+            <a:s r="341">
+               <a:s>/*
+  @input: &quot;Presumptive TB&quot;
+  @pseudocode: &quot;Presumptive TB&quot;=True
+  */
+define &quot;Presumptive TB&quot;:
+  </a:s>
+               <a:s r="342">
+                  <a:s>exists</a:s>
+                  <a:s r="351">
+                     <a:s>(</a:s>
+                     <a:s r="351">
+                        <a:s>
+                           <a:s r="343">
+                              <a:s r="345">
+                                 <a:s>
+                                    <a:s>Elements.&quot;Presumptive TB D.DE282 Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="348">
+                           <a:s>where </a:s>
+                           <a:s r="348">
+                              <a:s r="347">
+                                 <a:s r="346">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="347">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> is true</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="342" locator="108:3-109:26" xsi:type="Exists">
+            <operand localId="351" locator="108:9-109:26" xsi:type="Query">
+               <source localId="343" locator="108:10-108:56" alias="O">
+                  <expression localId="345" locator="108:10-108:54" name="Presumptive TB D.DE282 Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="348" locator="109:5-109:25" xsi:type="IsTrue">
+                  <operand localId="350" name="ToBoolean" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="349" asType="fhir:boolean" xsi:type="As">
+                        <operand localId="347" locator="109:11-109:17" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="353" locator="115:1-116:38" name="Currently on PrEP" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;Currently on PrEP&quot;"/>
+            <a:t name="pseudocode" value="&quot;Currently on PrEP&quot;=True"/>
+            <a:s r="353">
+               <a:s>/*
+  @input: &quot;Currently on PrEP&quot;
+  @pseudocode: &quot;Currently on PrEP&quot;=True
+  */
+define &quot;Currently on PrEP&quot;:
+  </a:s>
+               <a:s r="354">
+                  <a:s>exists</a:s>
+                  <a:s r="356">
+                     <a:s>(</a:s>
+                     <a:s r="356">
+                        <a:s r="355">
+                           <a:s>Elements</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="356">
+                           <a:s>&quot;Currently on PrEP&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="354" locator="116:3-116:38" xsi:type="Exists">
+            <signature localId="357" xsi:type="ListTypeSpecifier">
+               <elementType localId="358" name="fhir:MedicationStatement" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <operand localId="356" locator="116:9-116:38" name="Currently on PrEP" libraryName="Elements" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="360" locator="122:1-124:26" name="At elevated risk for HIV acquisition" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="&quot;At elevated risk for HIV acquisition&quot;"/>
+            <a:t name="pseudocode" value="&quot;At elevated risk for HIV acquisition&quot;=True"/>
+            <a:s r="360">
+               <a:s>/*
+  @input: &quot;At elevated risk for HIV acquisition&quot;
+  @pseudocode: &quot;At elevated risk for HIV acquisition&quot;=True
+  */
+define &quot;At elevated risk for HIV acquisition&quot;:
+  </a:s>
+               <a:s r="361">
+                  <a:s>exists</a:s>
+                  <a:s r="370">
+                     <a:s>(</a:s>
+                     <a:s r="370">
+                        <a:s>
+                           <a:s r="362">
+                              <a:s r="364">
+                                 <a:s>
+                                    <a:s>Elements.&quot;At elevated risk for HIV acquisition PRV.DE1 Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="367">
+                           <a:s>where </a:s>
+                           <a:s r="367">
+                              <a:s r="366">
+                                 <a:s r="365">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="366">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> is true</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="361" locator="123:3-124:26" xsi:type="Exists">
+            <signature localId="371" xsi:type="ListTypeSpecifier">
+               <elementType localId="372" name="fhir:Observation" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <operand localId="370" locator="123:9-124:26" xsi:type="Query">
+               <source localId="362" locator="123:10-123:78" alias="O">
+                  <expression localId="364" locator="123:10-123:76" name="At elevated risk for HIV acquisition PRV.DE1 Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="367" locator="124:5-124:25" xsi:type="IsTrue">
+                  <operand localId="369" name="ToBoolean" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="368" asType="fhir:boolean" xsi:type="As">
+                        <operand localId="366" locator="124:11-124:17" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="380" locator="249:1-250:99" name="Partner has HIV and is not virally suppressed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="380">
+               <a:s>define &quot;Partner has HIV and is not virally suppressed&quot;:
+  </a:s>
+               <a:s r="381">
+                  <a:s r="382">
+                     <a:s>&quot;Partner HIV positive&quot;</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="383">
+                     <a:s>&quot;Sex partner's HIV treatment status is partner not virally suppressed&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="381" locator="250:3-250:99" xsi:type="And">
+            <operand localId="382" locator="250:3-250:24" name="Partner HIV positive" xsi:type="ExpressionRef"/>
+            <operand localId="383" locator="250:30-250:99" name="Sex partner's HIV treatment status is partner not virally suppressed" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="374" locator="130:1-142:7" name="Schedule an annual follow-up test" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="&quot;Schedule an annual follow-up test&quot;"/>
+            <a:t name="pseudocode" value="&quot;Follow-up test recommended date&quot; = &quot;Visit date&quot; + 1 year"/>
+            <a:s r="374">
+               <a:s>/*
+  @output: &quot;Schedule an annual follow-up test&quot;
+  @pseudocode: &quot;Follow-up test recommended date&quot; = &quot;Visit date&quot; + 1 year
+  */
+define &quot;Schedule an annual follow-up test&quot;:
+  </a:s>
+               <a:s r="375">
+                  <a:s r="376">
+                     <a:s>&quot;HIV status negative or unknown&quot;</a:s>
+                  </a:s>
+                  <a:s> and
+    </a:s>
+                  <a:s r="377">
+                     <a:s>case
+    </a:s>
+                     <a:s r="378">
+                        <a:s>when </a:s>
+                        <a:s r="384">
+                           <a:s>&quot;Partner has HIV and is not virally suppressed&quot;</a:s>
+                        </a:s>
+                        <a:s r="385">
+      then true</a:s>
+                     </a:s>
+                     <a:s>
+    </a:s>
+                     <a:s r="386">
+                        <a:s>when </a:s>
+                        <a:s r="387">
+                           <a:s>&quot;HIV burden of setting is high HIV burden setting&quot;</a:s>
+                        </a:s>
+                        <a:s r="388">
+      then true</a:s>
+                     </a:s>
+                     <a:s>
+    </a:s>
+                     <a:s r="389">
+                        <a:s>when </a:s>
+                        <a:s r="390">
+                           <a:s>&quot;Key population member&quot;</a:s>
+                        </a:s>
+                        <a:s r="391">
+      then true</a:s>
+                     </a:s>
+                     <a:s>
+    </a:s>
+                     <a:s r="392">
+                        <a:s>when </a:s>
+                        <a:s r="393">
+                           <a:s>&quot;At elevated risk for HIV acquisition&quot;</a:s>
+                        </a:s>
+                        <a:s r="394">
+      then true</a:s>
+                     </a:s>
+                     <a:s r="395">
+    else false
+    end</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="375" locator="131:3-142:7" xsi:type="And">
+            <operand localId="376" locator="131:3-131:34" name="HIV status negative or unknown" xsi:type="ExpressionRef"/>
+            <operand localId="377" locator="132:5-142:7" xsi:type="Case">
+               <caseItem localId="378" locator="133:5-134:15">
+                  <when localId="384" locator="133:10-133:56" name="Partner has HIV and is not virally suppressed" xsi:type="ExpressionRef"/>
+                  <then localId="385" locator="134:12-134:15" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <caseItem localId="386" locator="135:5-136:15">
+                  <when localId="387" locator="135:10-135:59" name="HIV burden of setting is high HIV burden setting" xsi:type="ExpressionRef"/>
+                  <then localId="388" locator="136:12-136:15" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <caseItem localId="389" locator="137:5-138:15">
+                  <when localId="390" locator="137:10-137:32" name="Key population member" xsi:type="ExpressionRef"/>
+                  <then localId="391" locator="138:12-138:15" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <caseItem localId="392" locator="139:5-140:15">
+                  <when localId="393" locator="139:10-139:47" name="At elevated risk for HIV acquisition" xsi:type="ExpressionRef"/>
+                  <then localId="394" locator="140:12-140:15" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <else localId="395" locator="141:10-141:14" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="397" locator="148:1-156:5" name="Follow-up test recommended" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="&quot;Follow-up test recommended&quot;"/>
+            <a:t name="pseudocode" value="N/A"/>
+            <a:s r="397">
+               <a:s>/*
+ @output: &quot;Follow-up test recommended&quot;
+ @pseudocode: N/A
+ */
+define &quot;Follow-up test recommended&quot;:
+  </a:s>
+               <a:s r="398">
+                  <a:s r="399">
+                     <a:s>&quot;HIV status negative or unknown&quot;</a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="400">
+                     <a:s>case
+  </a:s>
+                     <a:s r="401">
+                        <a:s>when </a:s>
+                        <a:s r="402">
+                           <a:s>&quot;TB diagnosis result is diagnosed TB&quot;</a:s>
+                        </a:s>
+                        <a:s r="403">
+    then true</a:s>
+                     </a:s>
+                     <a:s>
+  </a:s>
+                     <a:s r="404">
+                        <a:s>when </a:s>
+                        <a:s r="405">
+                           <a:s>&quot;Presumptive TB&quot;</a:s>
+                        </a:s>
+                        <a:s r="406">
+    then true</a:s>
+                     </a:s>
+                     <a:s r="407">
+  else false
+  end</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="398" locator="149:3-156:5" xsi:type="And">
+            <operand localId="399" locator="149:3-149:34" name="HIV status negative or unknown" xsi:type="ExpressionRef"/>
+            <operand localId="400" locator="150:3-156:5" xsi:type="Case">
+               <caseItem localId="401" locator="151:3-152:13">
+                  <when localId="402" locator="151:8-151:44" name="TB diagnosis result is diagnosed TB" xsi:type="ExpressionRef"/>
+                  <then localId="403" locator="152:10-152:13" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <caseItem localId="404" locator="153:3-154:13">
+                  <when localId="405" locator="153:8-153:23" name="Presumptive TB" xsi:type="ExpressionRef"/>
+                  <then localId="406" locator="154:10-154:13" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <else localId="407" locator="155:8-155:12" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="409" locator="162:1-163:58" name="Schedule quarterly retesting for PrEP users" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="&quot;Schedule quarterly retesting for PrEP users&quot;"/>
+            <a:t name="pseudocode" value="N/A"/>
+            <a:s r="409">
+               <a:s>/*
+ @output: &quot;Schedule quarterly retesting for PrEP users&quot;
+ @pseudocode: N/A
+ */
+define &quot;Schedule quarterly retesting for PrEP users&quot;:
+  </a:s>
+               <a:s r="410">
+                  <a:s r="411">
+                     <a:s>&quot;HIV status negative or unknown&quot;</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="412">
+                     <a:s>&quot;Currently on PrEP&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="410" locator="163:3-163:58" xsi:type="And">
+            <operand localId="411" locator="163:3-163:34" name="HIV status negative or unknown" xsi:type="ExpressionRef"/>
+            <operand localId="412" locator="163:40-163:58" name="Currently on PrEP" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="416" locator="239:1-242:22" name="Pregnant in high HIV burden setting" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="416">
+               <a:s>// Helper Logic
+define &quot;Pregnant in high HIV burden setting&quot;:
+  </a:s>
+               <a:s r="417">
+                  <a:s r="418">
+                     <a:s r="419">
+                        <a:s>&quot;HIV status negative or unknown&quot;</a:s>
+                     </a:s>
+                     <a:s> and
+  </a:s>
+                     <a:s r="420">
+                        <a:s>&quot;HIV burden of setting is high HIV burden setting&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="421">
+                     <a:s>&quot;Currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="417" locator="240:3-242:22" xsi:type="And">
+            <operand localId="418" locator="240:3-241:52" xsi:type="And">
+               <operand localId="419" locator="240:3-240:34" name="HIV status negative or unknown" xsi:type="ExpressionRef"/>
+               <operand localId="420" locator="241:3-241:52" name="HIV burden of setting is high HIV burden setting" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="421" locator="242:3-242:22" name="Currently pregnant" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="414" locator="169:1-170:39" name="Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="&quot;Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy&quot;"/>
+            <a:t name="pseudocode" value="N/A"/>
+            <a:s r="414">
+               <a:s>/*
+ @output: &quot;Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy&quot;
+ @pseudocode: N/A
+ */
+define &quot;Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy&quot;:
+  </a:s>
+               <a:s r="422">
+                  <a:s>&quot;Pregnant in high HIV burden setting&quot;</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="422" locator="170:3-170:39" name="Pregnant in high HIV burden setting" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="424" locator="176:1-177:39" name="Schedule a 'Follow-up test recommended date' during a third trimester visit" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="&quot;Schedule a 'Follow-up test recommended date during a third trimester visit&quot;"/>
+            <a:t name="pseudocode" value="N/A"/>
+            <a:s r="424">
+               <a:s>/*
+ @output: &quot;Schedule a 'Follow-up test recommended date during a third trimester visit&quot;
+ @pseudocode: N/A
+ */
+define &quot;Schedule a 'Follow-up test recommended date' during a third trimester visit&quot;:
+  </a:s>
+               <a:s r="425">
+                  <a:s>&quot;Pregnant in high HIV burden setting&quot;</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="425" locator="177:3-177:39" name="Pregnant in high HIV burden setting" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="430" locator="244:1-247:22" name="Pregnant in low HIV burden setting" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="430">
+               <a:s>define &quot;Pregnant in low HIV burden setting&quot;:
+  </a:s>
+               <a:s r="431">
+                  <a:s r="432">
+                     <a:s r="433">
+                        <a:s>&quot;HIV status negative or unknown&quot;</a:s>
+                     </a:s>
+                     <a:s> and
+  </a:s>
+                     <a:s r="434">
+                        <a:s>&quot;HIV burden of setting is low HIV burden setting&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="435">
+                     <a:s>&quot;Currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="245:3-247:22" xsi:type="And">
+            <operand localId="432" locator="245:3-246:51" xsi:type="And">
+               <operand localId="433" locator="245:3-245:34" name="HIV status negative or unknown" xsi:type="ExpressionRef"/>
+               <operand localId="434" locator="246:3-246:51" name="HIV burden of setting is low HIV burden setting" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="435" locator="247:3-247:22" name="Currently pregnant" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="427" locator="183:1-193:5" name="Schedule a 'Follow-up test recommended date' at first ANC contact date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="&quot;Schedule a 'Follow-up test recommended date during a third trimester visit&quot;"/>
+            <a:t name="pseudocode" value="N/A"/>
+            <a:s r="427">
+               <a:s>/*
+ @output: &quot;Schedule a 'Follow-up test recommended date during a third trimester visit&quot;
+ @pseudocode: N/A
+ */
+define &quot;Schedule a 'Follow-up test recommended date' at first ANC contact date&quot;:
+  </a:s>
+               <a:s r="428">
+                  <a:s r="436">
+                     <a:s>&quot;Pregnant in low HIV burden setting&quot;</a:s>
+                  </a:s>
+                  <a:s> and 
+  </a:s>
+                  <a:s r="437">
+                     <a:s>case
+  </a:s>
+                     <a:s r="438">
+                        <a:s>when </a:s>
+                        <a:s r="439">
+                           <a:s>&quot;Key population member&quot;</a:s>
+                        </a:s>
+                        <a:s r="440">
+    then true</a:s>
+                     </a:s>
+                     <a:s>
+  </a:s>
+                     <a:s r="441">
+                        <a:s>when </a:s>
+                        <a:s r="442">
+                           <a:s>&quot;Partner has HIV and is not virally suppressed&quot;</a:s>
+                        </a:s>
+                        <a:s r="443">
+    then true</a:s>
+                     </a:s>
+                     <a:s>
+  </a:s>
+                     <a:s r="444">
+                        <a:s>when </a:s>
+                        <a:s r="445">
+                           <a:s>&quot;At elevated risk for HIV acquisition&quot;</a:s>
+                        </a:s>
+                        <a:s r="446">
+    then true</a:s>
+                     </a:s>
+                     <a:s r="447">
+  else false
+  end</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="428" locator="184:3-193:5" xsi:type="And">
+            <operand localId="436" locator="184:3-184:38" name="Pregnant in low HIV burden setting" xsi:type="ExpressionRef"/>
+            <operand localId="437" locator="185:3-193:5" xsi:type="Case">
+               <caseItem localId="438" locator="186:3-187:13">
+                  <when localId="439" locator="186:8-186:30" name="Key population member" xsi:type="ExpressionRef"/>
+                  <then localId="440" locator="187:10-187:13" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <caseItem localId="441" locator="188:3-189:13">
+                  <when localId="442" locator="188:8-188:54" name="Partner has HIV and is not virally suppressed" xsi:type="ExpressionRef"/>
+                  <then localId="443" locator="189:10-189:13" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <caseItem localId="444" locator="190:3-191:13">
+                  <when localId="445" locator="190:8-190:45" name="At elevated risk for HIV acquisition" xsi:type="ExpressionRef"/>
+                  <then localId="446" locator="191:10-191:13" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </caseItem>
+               <else localId="447" locator="192:8-192:12" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="449" locator="198:1-224:4" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="449">
+               <a:s>/*
+ @dynamicValue: Guidance
+ */
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="473">
+                  <a:s>Combine(</a:s>
+                  <a:s r="450">
+                     <a:s>{
+    </a:s>
+                     <a:s r="451">
+                        <a:s>if </a:s>
+                        <a:s r="452">
+                           <a:s>&quot;Schedule an annual follow-up test&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="453">
+                           <a:s>'Schedule an annual follow-up test.  
+
+  WHO guidance recommends annual retesting for people who have ongoing HIV-related risks in all settings. These include people with a known HIV-positive partner who is not virally suppressed on ART.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="454">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="455">
+                        <a:s>if </a:s>
+                        <a:s r="456">
+                           <a:s>&quot;Follow-up test recommended&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="457">
+                           <a:s>'Recommend a follow-up test.  
+
+  In certain conditions and situations, individuals who have been tested for HIV in the past can be advised to retest. These include: 
+  * Individuals presenting with a diagnosis or receiving treatment for STIs or viral hepatitis, 
+  * Individuals with a confirmed or presumptive TB diagnosis, 
+  * Outpatients presenting with clinical conditions or symptoms indicative of HIV, individuals with recent HIV risk exposure.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="458">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="459">
+                        <a:s>if </a:s>
+                        <a:s r="460">
+                           <a:s>&quot;Schedule quarterly retesting for PrEP users&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="461">
+                           <a:s>'Schedule quarterly retesting for PrEP users.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="462">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="463">
+                        <a:s>if </a:s>
+                        <a:s r="464">
+                           <a:s>&quot;Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="465">
+                           <a:s>'Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy
+
+  All pregnant women should be tested for HIV as well as syphilis and hepatitis B virus at least once and as early as possible during pregnancy.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="466">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="467">
+                        <a:s>if </a:s>
+                        <a:s r="468">
+                           <a:s>&quot;Schedule a 'Follow-up test recommended date' at first ANC contact date&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="469">
+                           <a:s>'In low HIV burden settings, retesting all pregnant women is not warranted unless focused among women from key populations or at high ongoing risk, such as those from key populations or with partners with HIV who are not virally suppressed. Countries could consider one additional retest in the post-partum period, such as at 14 weeks, six months or nine months for women in high HIV burden or incidence districts or provinces, key populations or women with partners with HIV who are not virally suppressed.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="470">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  }</a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="473" locator="199:3-224:4" xsi:type="Combine">
+            <source localId="450" locator="199:11-224:3" xsi:type="List">
+               <element localId="451" locator="200:5-204:13" xsi:type="If">
+                  <condition localId="452" locator="200:8-200:42" name="Schedule an annual follow-up test" xsi:type="ExpressionRef"/>
+                  <then localId="453" locator="201:12-201:249" valueType="t:String" value="Schedule an annual follow-up test.  &#xa;&#xa;  WHO guidance recommends annual retesting for people who have ongoing HIV-related risks in all settings. These include people with a known HIV-positive partner who is not virally suppressed on ART." xsi:type="Literal"/>
+                  <else localId="454" locator="204:12-204:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="455" locator="205:5-212:13" xsi:type="If">
+                  <condition localId="456" locator="205:8-205:35" name="Follow-up test recommended" xsi:type="ExpressionRef"/>
+                  <then localId="457" locator="206:12-206:464" valueType="t:String" value="Recommend a follow-up test.  &#xa;&#xa;  In certain conditions and situations, individuals who have been tested for HIV in the past can be advised to retest. These include: &#xa;  * Individuals presenting with a diagnosis or receiving treatment for STIs or viral hepatitis, &#xa;  * Individuals with a confirmed or presumptive TB diagnosis, &#xa;  * Outpatients presenting with clinical conditions or symptoms indicative of HIV, individuals with recent HIV risk exposure." xsi:type="Literal"/>
+                  <else localId="458" locator="212:12-212:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="459" locator="213:5-215:13" xsi:type="If">
+                  <condition localId="460" locator="213:8-213:52" name="Schedule quarterly retesting for PrEP users" xsi:type="ExpressionRef"/>
+                  <then localId="461" locator="214:12-214:57" valueType="t:String" value="Schedule quarterly retesting for PrEP users." xsi:type="Literal"/>
+                  <else localId="462" locator="215:12-215:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="463" locator="216:5-220:13" xsi:type="If">
+                  <condition localId="464" locator="216:8-216:105" name="Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy" xsi:type="ExpressionRef"/>
+                  <then localId="465" locator="217:12-217:255" valueType="t:String" value="Schedule an HIV test, syphilis test, hepatitis B test as early as possible during this pregnancy&#xa;&#xa;  All pregnant women should be tested for HIV as well as syphilis and hepatitis B virus at least once and as early as possible during pregnancy." xsi:type="Literal"/>
+                  <else localId="466" locator="220:12-220:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="467" locator="221:5-223:13" xsi:type="If">
+                  <condition localId="468" locator="221:8-221:79" name="Schedule a 'Follow-up test recommended date' at first ANC contact date" xsi:type="ExpressionRef"/>
+                  <then localId="469" locator="222:12-222:519" valueType="t:String" value="In low HIV burden settings, retesting all pregnant women is not warranted unless focused among women from key populations or at high ongoing risk, such as those from key populations or with partners with HIV who are not virally suppressed. Countries could consider one additional retest in the post-partum period, such as at 14 weeks, six months or nine months for women in high HIV burden or incidence districts or provinces, key populations or women with partners with HIV who are not virally suppressed." xsi:type="Literal"/>
+                  <else localId="470" locator="223:12-223:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+            </source>
+         </expression>
+      </def>
+      <def localId="475" locator="229:1-236:5" name="Schedule Follow-up Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="&quot;Date to schedule&quot;"/>
+            <a:s r="475">
+               <a:s>/*
+ @dynamicValue: &quot;Date to schedule&quot;
+ */
+define &quot;Schedule Follow-up Date&quot;:
+  </a:s>
+               <a:s r="476">
+                  <a:s>case
+  </a:s>
+                  <a:s r="477">
+                     <a:s>when </a:s>
+                     <a:s r="478">
+                        <a:s>&quot;Schedule an annual follow-up test&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    then </a:s>
+                     <a:s r="479">
+                        <a:s r="480">
+                           <a:s>Today</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="481">
+                           <a:s>1 years</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  </a:s>
+                  <a:s r="484">
+                     <a:s>when </a:s>
+                     <a:s r="485">
+                        <a:s>&quot;Schedule quarterly retesting for PrEP users&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    then </a:s>
+                     <a:s r="486">
+                        <a:s r="487">
+                           <a:s>Today</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="488">
+                           <a:s>3 months</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="491">
+  else null
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="476" locator="230:3-236:5" xsi:type="Case">
+            <caseItem localId="477" locator="231:3-232:24">
+               <when localId="478" locator="231:8-231:42" name="Schedule an annual follow-up test" xsi:type="ExpressionRef"/>
+               <then localId="479" locator="232:10-232:24" xsi:type="Add">
+                  <signature localId="482" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="483" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="480" locator="232:10-232:14" name="Today" xsi:type="ParameterRef"/>
+                  <operand localId="481" locator="232:18-232:24" value="1" unit="years" xsi:type="Quantity"/>
+               </then>
+            </caseItem>
+            <caseItem localId="484" locator="233:3-234:25">
+               <when localId="485" locator="233:8-233:52" name="Schedule quarterly retesting for PrEP users" xsi:type="ExpressionRef"/>
+               <then localId="486" locator="234:10-234:25" xsi:type="Add">
+                  <signature localId="489" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="490" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="487" locator="234:10-234:14" name="Today" xsi:type="ParameterRef"/>
+                  <operand localId="488" locator="234:18-234:25" value="3" unit="months" xsi:type="Quantity"/>
+               </then>
+            </caseItem>
+            <else localId="492" asType="t:Date" xsi:type="As">
+               <operand localId="491" locator="235:8-235:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

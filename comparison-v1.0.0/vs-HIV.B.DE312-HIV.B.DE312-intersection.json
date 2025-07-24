@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-282",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-282",
+  "name" : "IntersectionHIVBDE312AndHIVBDE312",
+  "title" : "Intersection of STI test result ValueSet And STI test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE313",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.B.DE314",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.B.DE315",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

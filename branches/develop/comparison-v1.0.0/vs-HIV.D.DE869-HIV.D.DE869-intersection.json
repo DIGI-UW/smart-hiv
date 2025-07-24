@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-735",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-735",
+  "name" : "IntersectionHIVDDE869AndHIVDDE869",
+  "title" : "Intersection of Confirmatory syphilis test type ValueSet And Confirmatory syphilis test type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE870",
+        "display" : "Treponemal"
+      },
+      {
+        "code" : "HIV.D.DE871",
+        "display" : "Non-treponemal"
+      },
+      {
+        "code" : "HIV.D.DE872",
+        "display" : "POC Test"
+      },
+      {
+        "code" : "HIV.D.DE873",
+        "display" : "NAAT"
+      },
+      {
+        "code" : "HIV.D.DE874",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

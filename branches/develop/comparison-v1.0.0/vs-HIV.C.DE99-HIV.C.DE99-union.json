@@ -1,0 +1,17 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-407",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-407",
+  "name" : "UnionHIVCDE99AndHIVCDE99",
+  "title" : "Union of Preferred third PEP drug ValueSet And Preferred third PEP drug ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE100",
+        "display" : "DTG"
+      }]
+    }]
+  }
+}

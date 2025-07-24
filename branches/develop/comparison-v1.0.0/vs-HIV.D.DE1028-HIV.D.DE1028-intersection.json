@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-429",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-429",
+  "name" : "IntersectionHIVDDE1028AndHIVDDE1028",
+  "title" : "Intersection of TPT regimen type ValueSet And TPT regimen type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE1029",
+        "display" : "3HP"
+      },
+      {
+        "code" : "HIV.D.DE1030",
+        "display" : "1HP"
+      },
+      {
+        "code" : "HIV.D.DE1031",
+        "display" : "6H"
+      },
+      {
+        "code" : "HIV.D.DE1032",
+        "display" : "Six months of levofloxacin daily"
+      },
+      {
+        "code" : "HIV.D.DE1033",
+        "display" : "Other TB preventive treatment (TPT) regimen"
+      }]
+    }]
+  }
+}

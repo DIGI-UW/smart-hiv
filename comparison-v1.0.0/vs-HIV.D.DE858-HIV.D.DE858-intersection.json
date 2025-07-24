@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-729",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-729",
+  "name" : "IntersectionHIVDDE858AndHIVDDE858",
+  "title" : "Intersection of Mycoplasma genitalium test type ValueSet And Mycoplasma genitalium test type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE859",
+        "display" : "NAAT"
+      },
+      {
+        "code" : "HIV.D.DE860",
+        "display" : "Microscopy"
+      },
+      {
+        "code" : "HIV.D.DE861",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

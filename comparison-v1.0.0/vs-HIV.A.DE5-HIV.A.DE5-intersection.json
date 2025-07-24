@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-180",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-180",
+  "name" : "IntersectionHIVADE5AndHIVADE5",
+  "title" : "Intersection of Referred by ValueSet And Referred by ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.A.DE6",
+        "display" : "Community"
+      },
+      {
+        "code" : "HIV.A.DE7",
+        "display" : "Facility"
+      }]
+    }]
+  }
+}

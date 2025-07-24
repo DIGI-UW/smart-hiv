@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-921",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-921",
+  "name" : "IntersectionHIVGDE62AndHIVGDE62",
+  "title" : "Intersection of Reason syphilis test not done ValueSet And Reason syphilis test not done ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.G.DE63",
+        "display" : "Test delayed to next contact or referred"
+      },
+      {
+        "code" : "HIV.G.DE64",
+        "display" : "Stock-out or expired"
+      },
+      {
+        "code" : "HIV.G.DE65",
+        "display" : "Machine or technician not available or machine not functioning"
+      },
+      {
+        "code" : "HIV.G.DE66",
+        "display" : "Client declined / refused test"
+      },
+      {
+        "code" : "HIV.G.DE67",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

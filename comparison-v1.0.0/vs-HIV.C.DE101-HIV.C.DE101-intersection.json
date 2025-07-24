@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-336",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-336",
+  "name" : "IntersectionHIVCDE101AndHIVCDE101",
+  "title" : "Intersection of Alternative third PEP drug ValueSet And Alternative third PEP drug ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE102",
+        "display" : "ATV/r"
+      },
+      {
+        "code" : "HIV.C.DE103",
+        "display" : "DRV/r"
+      },
+      {
+        "code" : "HIV.C.DE104",
+        "display" : "LPV/r"
+      },
+      {
+        "code" : "HIV.C.DE105",
+        "display" : "RAL"
+      }]
+    }]
+  }
+}

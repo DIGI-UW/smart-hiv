@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-477",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-477",
+  "name" : "IntersectionHIVDDE225AndHIVDDE225",
+  "title" : "Intersection of Treatment failure ValueSet And Treatment failure ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE226",
+        "display" : "Clinical failure"
+      },
+      {
+        "code" : "HIV.D.DE227",
+        "display" : "Immunological failure"
+      },
+      {
+        "code" : "HIV.D.DE228",
+        "display" : "Virological failure"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-528",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-528",
+  "name" : "IntersectionHIVDDE461AndHIVDDE461",
+  "title" : "Intersection of Medications dispensed ValueSet And Medications dispensed ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE462",
+        "display" : "Number of days of medications dispensed"
+      },
+      {
+        "code" : "HIV.D.DE463",
+        "display" : "Dosage"
+      },
+      {
+        "code" : "HIV.D.DE464",
+        "display" : "Frequency"
+      }]
+    }]
+  }
+}

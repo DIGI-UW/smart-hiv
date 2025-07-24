@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-792",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-792",
+  "name" : "IntersectionHIVEDE141AndHIVEDE141",
+  "title" : "Intersection of Maternal HIV status ValueSet And Maternal HIV status ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE142",
+        "display" : "HIV-positive"
+      },
+      {
+        "code" : "HIV.E.DE143",
+        "display" : "HIV-negative"
+      },
+      {
+        "code" : "HIV.E.DE144",
+        "display" : "Unknown"
+      }]
+    }]
+  }
+}

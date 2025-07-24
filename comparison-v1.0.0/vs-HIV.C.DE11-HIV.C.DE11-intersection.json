@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-342",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-342",
+  "name" : "IntersectionHIVCDE11AndHIVCDE11",
+  "title" : "Intersection of PrEP dosing type ValueSet And PrEP dosing type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE12",
+        "display" : "Daily oral PrEP"
+      },
+      {
+        "code" : "HIV.C.DE13",
+        "display" : "Event-driven PrEP (2+1+1)"
+      },
+      {
+        "code" : "HIV.C.DE14",
+        "display" : "Other PrEP dosing type"
+      }]
+    }]
+  }
+}

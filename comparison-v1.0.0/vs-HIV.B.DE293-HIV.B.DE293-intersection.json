@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-273",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-273",
+  "name" : "IntersectionHIVBDE293AndHIVBDE293",
+  "title" : "Intersection of Trichomonas vaginalis test type ValueSet And Trichomonas vaginalis test type ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE294",
+        "display" : "NAAT"
+      },
+      {
+        "code" : "HIV.B.DE295",
+        "display" : "POC Test"
+      },
+      {
+        "code" : "HIV.B.DE296",
+        "display" : "Culture"
+      },
+      {
+        "code" : "HIV.B.DE297",
+        "display" : "Microscopy"
+      },
+      {
+        "code" : "HIV.B.DE298",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

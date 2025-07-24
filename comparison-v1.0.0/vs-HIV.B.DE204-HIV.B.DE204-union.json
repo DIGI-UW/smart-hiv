@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "d38d4ac7-9a51-41de-acee-44e15c63db2f-239",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/d38d4ac7-9a51-41de-acee-44e15c63db2f-239",
+  "name" : "UnionHIVBDE204AndHIVBDE204",
+  "title" : "Union of Timing of adverse event ValueSet And Timing of adverse event ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:54:19+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE205",
+        "display" : "Intraoperative"
+      },
+      {
+        "code" : "HIV.B.DE206",
+        "display" : "Postoperative"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "5ecf8b69-fd45-4844-9440-f99e7047a45a-287",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/5ecf8b69-fd45-4844-9440-f99e7047a45a-287",
+  "name" : "UnionHIVBDE325AndHIVBDE325",
+  "title" : "Union of Confirmatory STI test result ValueSet And Confirmatory STI test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:30:12+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE326",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.B.DE327",
+        "display" : "Negative"
+      },
+      {
+        "code" : "HIV.B.DE328",
+        "display" : "Inconclusive"
+      }]
+    }]
+  }
+}

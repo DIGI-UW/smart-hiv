@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-638",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-638",
+  "name" : "UnionHIVDDE688AndHIVDDE688",
+  "title" : "Union of HPV16/18 test result ValueSet And HPV16/18 test result ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE689",
+        "display" : "Positive"
+      },
+      {
+        "code" : "HIV.D.DE690",
+        "display" : "Negative"
+      }]
+    }]
+  }
+}
