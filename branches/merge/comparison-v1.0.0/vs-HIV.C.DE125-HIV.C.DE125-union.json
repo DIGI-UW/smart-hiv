@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-350",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-350",
+  "name" : "UnionHIVCDE125AndHIVCDE125",
+  "title" : "Union of Type of follow-up appointment ValueSet And Type of follow-up appointment ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE126",
+        "display" : "Retesting for HIV"
+      },
+      {
+        "code" : "HIV.C.DE127",
+        "display" : "Follow-up appointment for PrEP"
+      },
+      {
+        "code" : "HIV.C.DE128",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="454">
+         <a:s>/**
+ * Library: HIV.IND.27 Logic
+ * Ref No: ART.1
+ * Short Name: People living with HIV on ART
+ *
+ * Definition: Number and % of people on ART among all people living with HIV at the end of the reporting period
+ *
+ * Numerator: Number of people on ART at the end of the reporting period (HIV patient monitoring data from, for example, ART registers, patient records or EMRs). For key populations survey data may be required.
+ * Numerator Calculation: COUNT of clients with &quot;HIV status&quot;='HIV-positive' AND &quot;On ART&quot;=True at reporting period end date
+ * Numerator Exclusions: Clients with an &quot;HIV treatment outcome&quot; IN 'Lost to follow up', 'Transferred out', 'Death (documented)' at the end of the reporting period
+ *
+ * Denominator: 1. To determine treatment coverage: estimated number of people living with HIV (from models, such as Spectrum AIM) | 2. To gauge progress toward the second 95 target: number of people living with HIV who know their HIV status (from surveys or models)
+ * Denominator Calculation: For treatment coverage: *Estimated number of people living with HIV |  | For progress towards 2nd 95 target: *Estimated number of people living with HIV who know their status
+ * Denominator Exclusions: Clients with an &quot;HIV treatment outcome&quot; IN 'Lost to follow up', 'Transferred out', 'Death (documented)' at the end of the reporting period
+ *
+ * Disaggregations:
+ * • Gender (female, male, other*) 
+ *  • Age (0–4, 5–9, 10–14, 15–19, 20–24, 25–29, 30–34, 35–39, 40–44, 45–49, 50+ years)** 
+ *  • Key populations (men who have sex with men, people living in prisons and other closed settings, people who inject drugs, sex workers, trans and gender diverse people)*** 
+ *  • Cities and other administrative regions of epidemiologic importance
+ *
+ * Disaggregation Elements: Gender | Age | Key population member type | 
+ *
+ * Numerator and Denominator Elements:
+ * HIV status 
+ *  On ART
+ *
+ * Reference: Consolidated guidelines on person-centred HIV strategic information: strengthening routine data for impact. Geneva: World Health Organization; 2022
+ * 
+ * Data Concepts:
+ * HIV.A.DE17: Age | Calculated age (number of years) of the client based on date of birth
+ * HIV.A.DE18: Gender* | Gender of the client*
+ * HIV.A.DE19: Female | Client identifies as female
+ * HIV.A.DE20: Male | Client identifies as male
+ * HIV.A.DE21: Transgender male | Client identifies as transgender male
+ * HIV.A.DE22: Transgender female | Client identifies as transgender female
+ * HIV.A.DE23: Other | Additional category
+ * HIV.B.DE50: Key population member type* | The type of key population that the client is included in
+ * HIV.B.DE51: Sex worker | Client is a sex worker
+ * HIV.B.DE52: Men who have sex with men | Client is a man who has sex with men
+ * HIV.B.DE53: Trans and gender-diverse people | Client identifies as trans and gender-diverse
+ * HIV.B.DE54: People who inject drugs | Client is a person who injects drugs
+ * HIV.B.DE55: People living in prisons and other closed settings | Client lives in a prison or another closed setting
+ * HIV.B.DE115: HIV status | HIV status reported after applying the national HIV testing algorithm. No single HIV test can provide an HIV-positive diagnosis.
+ * HIV.B.DE116: HIV-positive | Client is HIV-positive
+ * HIV.B.DE117: HIV-negative | Client is HIV-negative
+ * HIV.B.DE118: Unknown | Client has unknown HIV status
+ * HIV.D.DE38: On ART | Client is currently taking ART
+ * HIV.E.DE114: Key population member type* | The type of key population that the infant's mother is included in
+ * HIV.E.DE115: Sex worker | Infant's mother is a sex worker
+ * HIV.E.DE116: People who inject drugs | Infant's mother is a person who injects drugs
+ * HIV.E.DE117: Trans and gender-diverse people | Infant's mother identifies as trans and gender-diverse
+ * HIV.E.DE118: People living in prisons and other closed setting | Infant's mother is in a prison or closed setting
+ * HIV.H.DE47: On ART | Client is currently taking ART 
+ *
+ * Additional Context
+ * - what it measures: Measures progress towards providing ART to all people living with HIV, that is, treatment coverage, taking into account total attrition during the reporting period.
+ * - rationale: • WHO currently recommends treatment for all people living with HIV to achieve viral suppression. | • This indicator is central to accountability for national health sector strategic plans, effective programme management and donor programming. | • This indicator is essential to measurement of the second 95 target: that 95% of the people who know their HIV-positive status are accessing ART by 2025.
+ * - method: For the numerator: Generated by determining the number of people living with HIV on ART at the end of the last reporting period plus the number of people living with HIV initiated on ART during the current reporting period, taking into account retention/attrition status by the end of the reporting period. Retention and attrition analysis should be conducted as part of reporting on this indicator. The numerator should NOT INCLUDE people who have stopped treatment, died or were otherwise lost to follow-up during this period. Consistent with methods for defining the total attrition from ART indicator (see ART.2), these status classification categories should be reported separately to the national level and used to calculate the number of people living with HIV who are on ART. |  | For the denominator: Epidemiological models such as Spectrum AIM are the preferred source for estimating the number of people living with HIV. Denominator 2 should be consistent with the numerator used for indicator HTS.1 People living with HIV who know their HIV status (first 95 target). The recommended maximum reporting frequency is 12 months. Shorter reporting intervals, for example, three months, are recommended where feasible.
+ * 
+ * Suggested Scoring Method: proportion | http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/proportion-measure-cqfm
+ */
+
+/* 
+ * Profiles:
+ * - HIVStatusCondition
+ * - HIVStatusObservation
+ * - HIVAntiRetroviralTreatment
+*/
+
+library HIVIND27Logic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="HIVIND27Logic" system="http://smart.who.int/hiv"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="74:1-74:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>// Included Libraries
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="76:1-76:44" localIdentifier="HIC" path="http://smart.who.int/hiv/HIVCommon" version="0.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVCommon</a:s>
+               </a:s>
+               <a:s> version '0.0.1' called HIC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="77:1-77:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="78:1-78:29" localIdentifier="WCom" path="http://smart.who.int/hiv/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="79:1-79:29" localIdentifier="HE" path="http://smart.who.int/hiv/HIVElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVElements</a:s>
+               </a:s>
+               <a:s> called HE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="80:1-80:39" localIdentifier="HIE" path="http://smart.who.int/hiv/HIVIndicatorElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVIndicatorElements</a:s>
+               </a:s>
+               <a:s> called HIE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="218" locator="81:1-81:31" localIdentifier="Config" path="http://smart.who.int/hiv/HIVConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVConfig</a:s>
+               </a:s>
+               <a:s> called Config</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="220" locator="82:1-82:35" localIdentifier="Concepts" path="http://smart.who.int/hiv/HIVConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="220">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="222" locator="85:1-85:88" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="222">
+               <a:s>// Indicator Definition
+parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="234">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="235">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="233">
+                  <a:s r="227">Interval[@2023-01-01, @2023-01-30]</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="233" locator="85:55-85:88" lowClosed="true" highClosed="true" xsi:type="Interval">
+            <low localId="227" locator="85:64-85:74" xsi:type="Date">
+               <year localId="224" valueType="t:Integer" value="2023" xsi:type="Literal"/>
+               <month localId="225" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               <day localId="226" valueType="t:Integer" value="1" xsi:type="Literal"/>
+            </low>
+            <high localId="232" locator="85:77-85:87" xsi:type="Date">
+               <year localId="229" valueType="t:Integer" value="2023" xsi:type="Literal"/>
+               <month localId="230" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               <day localId="231" valueType="t:Integer" value="30" xsi:type="Literal"/>
+            </high>
+         </default>
+         <parameterTypeSpecifier localId="234" locator="85:32-85:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="235" locator="85:41-85:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="240" locator="87:1-87:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="238" locator="87:1-87:15" name="Patient" context="Patient">
+         <expression localId="239" xsi:type="SingletonFrom">
+            <operand localId="237" locator="87:1-87:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="243" locator="94:1-112:37" name="Measure Population" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="243">
+               <a:s>/*
+* Many indicator specifications in ANC and Immunization have context as patient. 
+* I believe these should be unfiltered to get all observations not just those related to a current patient
+* Should discuss.
+*/
+
+define &quot;Measure Population&quot;:
+   </a:s>
+               <a:s r="244">
+                  <a:s r="245">
+                     <a:s r="247">
+                        <a:s r="246">
+                           <a:s>HIE</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="247">
+                           <a:s>&quot;Has HIV-positive Status&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+   and </a:s>
+                     <a:s r="248">
+                        <a:s>exists</a:s>
+                        <a:s r="416">
+                           <a:s>(</a:s>
+                           <a:s r="416">
+                              <a:s>
+                                 <a:s r="249">
+                                    <a:s r="251">
+                                       <a:s>
+                                          <a:s>HE.&quot;On ART H.DE47&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> A</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+    </a:s>
+                              <a:s r="362">
+                                 <a:s>with </a:s>
+                                 <a:s r="253">
+                                    <a:s r="254">
+                                       <a:s r="254">
+                                          <a:s>[EpisodeOfCare]</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> EOC</a:s>
+                                 </a:s>
+                                 <a:s>
+      such that </a:s>
+                                 <a:s r="255">
+                                    <a:s r="256">
+                                       <a:s r="260">
+                                          <a:s r="258">
+                                             <a:s r="257">
+                                                <a:s>A</a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="258">
+                                                <a:s>context</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="260">
+                                             <a:s>references(</a:s>
+                                             <a:s r="259">
+                                                <a:s>EOC</a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> and 
+      //Not Transferred out
+      </a:s>
+                                       <a:s r="263">
+                                          <a:s>not </a:s>
+                                          <a:s r="264">
+                                             <a:s>(</a:s>
+                                             <a:s r="264">
+                                                <a:s r="265">
+                                                   <a:s r="266">
+                                                      <a:s>exists</a:s>
+                                                      <a:s r="281">
+                                                         <a:s>(</a:s>
+                                                         <a:s r="281">
+                                                            <a:s>
+                                                               <a:s r="267">
+                                                                  <a:s r="269">
+                                                                     <a:s>
+                                                                        <a:s>EOC.type</a:s>
+                                                                     </a:s>
+                                                                  </a:s>
+                                                                  <a:s> T</a:s>
+                                                               </a:s>
+                                                            </a:s>
+                                                            <a:s> </a:s>
+                                                            <a:s r="271">
+                                                               <a:s>where </a:s>
+                                                               <a:s r="271">
+                                                                  <a:s r="272">
+                                                                     <a:s>T</a:s>
+                                                                  </a:s>
+                                                                  <a:s> ~ </a:s>
+                                                                  <a:s r="274">
+                                                                     <a:s r="273">
+                                                                        <a:s>Concepts</a:s>
+                                                                     </a:s>
+                                                                     <a:s>.</a:s>
+                                                                     <a:s r="274">
+                                                                        <a:s>&quot;On ART - HIV.H.DE47&quot;</a:s>
+                                                                     </a:s>
+                                                                  </a:s>
+                                                               </a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                         <a:s>)</a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                   <a:s>
+      and </a:s>
+                                                   <a:s r="282">
+                                                      <a:s r="284">
+                                                         <a:s r="283">
+                                                            <a:s>EOC</a:s>
+                                                         </a:s>
+                                                         <a:s>.</a:s>
+                                                         <a:s r="284">
+                                                            <a:s>status</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                      <a:s> = </a:s>
+                                                      <a:s r="285">
+                                                         <a:s>'finished'</a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> and </a:s>
+                                                <a:s r="305">
+                                                   <a:s r="293">
+                                                      <a:s r="292">
+                                                         <a:s r="291">
+                                                            <a:s>EOC</a:s>
+                                                         </a:s>
+                                                         <a:s>.</a:s>
+                                                         <a:s r="292">
+                                                            <a:s>period</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                      <a:s>.</a:s>
+                                                      <a:s r="293">
+                                                         <a:s>toInterval()</a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                   <a:s r="305"> ends during </a:s>
+                                                   <a:s r="303">
+                                                      <a:s>&quot;Measurement Period&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>
+      and </a:s>
+                                    <a:s r="317">
+                                       <a:s>not </a:s>
+                                       <a:s r="318">
+                                          <a:s>exists </a:s>
+                                          <a:s r="359">
+                                             <a:s>(
+      </a:s>
+                                             <a:s r="359">
+                                                <a:s>
+                                                   <a:s r="319">
+                                                      <a:s r="321">
+                                                         <a:s>
+                                                            <a:s>EOC.statusHistory</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                      <a:s> H</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s>
+      </a:s>
+                                                <a:s r="323">
+                                                   <a:s>where </a:s>
+                                                   <a:s r="323">
+                                                      <a:s r="324">
+                                                         <a:s r="326">
+                                                            <a:s r="325">
+                                                               <a:s>H</a:s>
+                                                            </a:s>
+                                                            <a:s>.</a:s>
+                                                            <a:s r="326">
+                                                               <a:s>status</a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                         <a:s> = </a:s>
+                                                         <a:s r="327">
+                                                            <a:s>'finished'</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                      <a:s>
+      and </a:s>
+                                                      <a:s r="347">
+                                                         <a:s r="335">
+                                                            <a:s r="334">
+                                                               <a:s r="333">
+                                                                  <a:s>H</a:s>
+                                                               </a:s>
+                                                               <a:s>.</a:s>
+                                                               <a:s r="334">
+                                                                  <a:s>period</a:s>
+                                                               </a:s>
+                                                            </a:s>
+                                                            <a:s>.</a:s>
+                                                            <a:s r="335">
+                                                               <a:s>toInterval()</a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                         <a:s r="347"> ends during </a:s>
+                                                         <a:s r="345">
+                                                            <a:s>&quot;Measurement Period&quot;</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+      //On ART for at least one day in measurement period
+    </a:s>
+                              <a:s r="363">
+                                 <a:s>where </a:s>
+                                 <a:s r="363">
+                                    <a:s r="364">
+                                       <a:s r="373">
+                                          <a:s r="367">
+                                             <a:s r="366">
+                                                <a:s r="365">
+                                                   <a:s>A</a:s>
+                                                </a:s>
+                                                <a:s>.</a:s>
+                                                <a:s r="366">
+                                                   <a:s>effective</a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="367">
+                                                <a:s>toInterval()</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s r="373"> starts before </a:s>
+                                          <a:s r="368">
+                                             <a:s>end of </a:s>
+                                             <a:s r="369">
+                                                <a:s>&quot;Measurement Period&quot;</a:s>
+                                             </a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>
+    and </a:s>
+                                       <a:s r="389">
+                                          <a:s r="381">
+                                             <a:s r="380">
+                                                <a:s r="379">
+                                                   <a:s>A</a:s>
+                                                </a:s>
+                                                <a:s>.</a:s>
+                                                <a:s r="380">
+                                                   <a:s>effective</a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="381">
+                                                <a:s>toInterval()</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s r="389"> ends after </a:s>
+                                          <a:s r="382">
+                                             <a:s>start of </a:s>
+                                             <a:s r="383">
+                                                <a:s>&quot;Measurement Period&quot;</a:s>
+                                             </a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>
+    //Not Lost to follow up
+	and </a:s>
+                                    <a:s r="410">
+                                       <a:s>(</a:s>
+                                       <a:s r="410">
+                                          <a:s r="397">
+                                             <a:s r="396">
+                                                <a:s r="395">
+                                                   <a:s>A</a:s>
+                                                </a:s>
+                                                <a:s>.</a:s>
+                                                <a:s r="396">
+                                                   <a:s>effective</a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="397">
+                                                <a:s>toInterval()</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s r="410"> ends after </a:s>
+                                          <a:s r="398">
+                                             <a:s>(</a:s>
+                                             <a:s r="398">
+                                                <a:s r="399">
+                                                   <a:s>end of </a:s>
+                                                   <a:s r="400">
+                                                      <a:s>&quot;Measurement Period&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> - </a:s>
+                                                <a:s r="404">
+                                                   <a:s r="403">
+                                                      <a:s>Config</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="404">
+                                                      <a:s>&quot;LTFU Days&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>)</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+   )</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+   and </a:s>
+                  <a:s r="419">
+                     <a:s>not </a:s>
+                     <a:s r="421">
+                        <a:s r="420">
+                           <a:s>HIE</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="421">
+                           <a:s>&quot;Has death documented&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="95:4-112:37" xsi:type="And">
+            <operand localId="245" locator="95:4-111:4" xsi:type="And">
+               <operand localId="247" locator="95:4-95:32" name="Has HIV-positive Status" libraryName="HIE" xsi:type="ExpressionRef"/>
+               <operand localId="248" locator="96:8-111:4" xsi:type="Exists">
+                  <signature localId="417" xsi:type="ListTypeSpecifier">
+                     <elementType localId="418" name="fhir:MedicationStatement" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand localId="416" locator="96:14-111:4" xsi:type="Query">
+                     <source localId="249" locator="96:15-96:34" alias="A">
+                        <expression localId="251" locator="96:15-96:32" name="On ART H.DE47" libraryName="HE" xsi:type="ExpressionRef"/>
+                     </source>
+                     <relationship localId="362" locator="97:5-105:65" alias="EOC" xsi:type="With">
+                        <expression localId="254" locator="97:10-97:24" dataType="fhir:EpisodeOfCare" templateId="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare" xsi:type="Retrieve"/>
+                        <suchThat localId="255" locator="98:17-105:65" xsi:type="And">
+                           <operand localId="256" locator="98:17-101:95" xsi:type="And">
+                              <operand localId="260" locator="98:17-98:41" name="references" libraryName="WCom" xsi:type="FunctionRef">
+                                 <signature localId="261" name="fhir:Reference" xsi:type="NamedTypeSpecifier"/>
+                                 <signature localId="262" name="fhir:Resource" xsi:type="NamedTypeSpecifier"/>
+                                 <operand localId="258" locator="98:17-98:25" path="context" scope="A" xsi:type="Property"/>
+                                 <operand localId="259" locator="98:38-98:40" name="EOC" xsi:type="AliasRef"/>
+                              </operand>
+                              <operand localId="263" locator="100:7-101:95" xsi:type="Not">
+                                 <operand localId="264" locator="100:11-101:95" xsi:type="And">
+                                    <operand localId="265" locator="100:12-101:33" xsi:type="And">
+                                       <operand localId="266" locator="100:12-100:70" xsi:type="Exists">
+                                          <operand localId="281" locator="100:18-100:70" xsi:type="Query">
+                                             <source localId="267" locator="100:19-100:28" alias="T">
+                                                <expression localId="269" locator="100:19-100:26" path="type" scope="EOC" xsi:type="Property"/>
+                                             </source>
+                                             <where localId="271" locator="100:30-100:69" xsi:type="Equivalent">
+                                                <signature localId="279" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                                                <signature localId="280" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                                                <operand localId="275" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                                   <operand localId="272" locator="100:36" name="T" xsi:type="AliasRef"/>
+                                                </operand>
+                                                <operand localId="277" xsi:type="ToConcept">
+                                                   <signature localId="278" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                                                   <operand localId="274" locator="100:40-100:69" name="On ART - HIV.H.DE47" libraryName="Concepts" xsi:type="CodeRef"/>
+                                                </operand>
+                                             </where>
+                                          </operand>
+                                       </operand>
+                                       <operand localId="282" locator="101:11-101:33" xsi:type="Equal">
+                                          <signature localId="289" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                                          <signature localId="290" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                                          <operand localId="287" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                             <signature localId="288" name="fhir:EpisodeOfCareStatus" xsi:type="NamedTypeSpecifier"/>
+                                             <operand localId="284" locator="101:11-101:20" path="status" scope="EOC" xsi:type="Property"/>
+                                          </operand>
+                                          <operand localId="285" locator="101:24-101:33" valueType="t:String" value="finished" xsi:type="Literal"/>
+                                       </operand>
+                                    </operand>
+                                    <operand localId="305" locator="101:39-101:94" xsi:type="In">
+                                       <operand localId="304" locator="101:63-101:66" xsi:type="End">
+                                          <operand localId="293" locator="101:39-101:61" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                             <operand localId="294" xsi:type="As">
+                                                <operand localId="292" locator="101:39-101:48" path="period" scope="EOC" xsi:type="Property"/>
+                                                <asTypeSpecifier localId="295" xsi:type="ChoiceTypeSpecifier">
+                                                   <choice localId="296" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                                                   <choice localId="297" name="fhir:Period" xsi:type="NamedTypeSpecifier"/>
+                                                   <choice localId="298" name="fhir:Timing" xsi:type="NamedTypeSpecifier"/>
+                                                   <choice localId="299" name="fhir:instant" xsi:type="NamedTypeSpecifier"/>
+                                                   <choice localId="300" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                                                   <choice localId="301" name="fhir:Age" xsi:type="NamedTypeSpecifier"/>
+                                                   <choice localId="302" name="fhir:Range" xsi:type="NamedTypeSpecifier"/>
+                                                </asTypeSpecifier>
+                                             </operand>
+                                          </operand>
+                                       </operand>
+                                       <operand localId="306" xsi:type="Interval">
+                                          <low localId="309" xsi:type="ToDateTime">
+                                             <signature localId="310" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                             <operand localId="307" path="low" xsi:type="Property">
+                                                <source localId="303" locator="101:75-101:94" name="Measurement Period" xsi:type="ParameterRef"/>
+                                             </operand>
+                                          </low>
+                                          <lowClosedExpression localId="311" path="lowClosed" xsi:type="Property">
+                                             <source localId="303" locator="101:75-101:94" name="Measurement Period" xsi:type="ParameterRef"/>
+                                          </lowClosedExpression>
+                                          <high localId="314" xsi:type="ToDateTime">
+                                             <signature localId="315" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                             <operand localId="312" path="high" xsi:type="Property">
+                                                <source localId="303" locator="101:75-101:94" name="Measurement Period" xsi:type="ParameterRef"/>
+                                             </operand>
+                                          </high>
+                                          <highClosedExpression localId="316" path="highClosed" xsi:type="Property">
+                                             <source localId="303" locator="101:75-101:94" name="Measurement Period" xsi:type="ParameterRef"/>
+                                          </highClosedExpression>
+                                       </operand>
+                                    </operand>
+                                 </operand>
+                              </operand>
+                           </operand>
+                           <operand localId="317" locator="102:11-105:65" xsi:type="Not">
+                              <operand localId="318" locator="102:15-105:65" xsi:type="Exists">
+                                 <signature localId="360" xsi:type="ListTypeSpecifier">
+                                    <elementType localId="361" name="fhir:EpisodeOfCare.StatusHistory" xsi:type="NamedTypeSpecifier"/>
+                                 </signature>
+                                 <operand localId="359" locator="102:22-105:65" xsi:type="Query">
+                                    <source localId="319" locator="103:7-103:25" alias="H">
+                                       <expression localId="321" locator="103:7-103:23" path="statusHistory" scope="EOC" xsi:type="Property"/>
+                                    </source>
+                                    <where localId="323" locator="104:7-105:64" xsi:type="And">
+                                       <operand localId="324" locator="104:13-104:33" xsi:type="Equal">
+                                          <signature localId="331" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                                          <signature localId="332" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                                          <operand localId="329" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                             <signature localId="330" name="fhir:EpisodeOfCareStatus" xsi:type="NamedTypeSpecifier"/>
+                                             <operand localId="326" locator="104:13-104:20" path="status" scope="H" xsi:type="Property"/>
+                                          </operand>
+                                          <operand localId="327" locator="104:24-104:33" valueType="t:String" value="finished" xsi:type="Literal"/>
+                                       </operand>
+                                       <operand localId="347" locator="105:11-105:64" xsi:type="In">
+                                          <operand localId="346" locator="105:33-105:36" xsi:type="End">
+                                             <operand localId="335" locator="105:11-105:31" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                                <operand localId="336" xsi:type="As">
+                                                   <operand localId="334" locator="105:11-105:18" path="period" scope="H" xsi:type="Property"/>
+                                                   <asTypeSpecifier localId="337" xsi:type="ChoiceTypeSpecifier">
+                                                      <choice localId="338" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                                                      <choice localId="339" name="fhir:Period" xsi:type="NamedTypeSpecifier"/>
+                                                      <choice localId="340" name="fhir:Timing" xsi:type="NamedTypeSpecifier"/>
+                                                      <choice localId="341" name="fhir:instant" xsi:type="NamedTypeSpecifier"/>
+                                                      <choice localId="342" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                                                      <choice localId="343" name="fhir:Age" xsi:type="NamedTypeSpecifier"/>
+                                                      <choice localId="344" name="fhir:Range" xsi:type="NamedTypeSpecifier"/>
+                                                   </asTypeSpecifier>
+                                                </operand>
+                                             </operand>
+                                          </operand>
+                                          <operand localId="348" xsi:type="Interval">
+                                             <low localId="351" xsi:type="ToDateTime">
+                                                <signature localId="352" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                                <operand localId="349" path="low" xsi:type="Property">
+                                                   <source localId="345" locator="105:45-105:64" name="Measurement Period" xsi:type="ParameterRef"/>
+                                                </operand>
+                                             </low>
+                                             <lowClosedExpression localId="353" path="lowClosed" xsi:type="Property">
+                                                <source localId="345" locator="105:45-105:64" name="Measurement Period" xsi:type="ParameterRef"/>
+                                             </lowClosedExpression>
+                                             <high localId="356" xsi:type="ToDateTime">
+                                                <signature localId="357" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                                <operand localId="354" path="high" xsi:type="Property">
+                                                   <source localId="345" locator="105:45-105:64" name="Measurement Period" xsi:type="ParameterRef"/>
+                                                </operand>
+                                             </high>
+                                             <highClosedExpression localId="358" path="highClosed" xsi:type="Property">
+                                                <source localId="345" locator="105:45-105:64" name="Measurement Period" xsi:type="ParameterRef"/>
+                                             </highClosedExpression>
+                                          </operand>
+                                       </operand>
+                                    </where>
+                                 </operand>
+                              </operand>
+                           </operand>
+                        </suchThat>
+                     </relationship>
+                     <where localId="363" locator="107:5-110:93" xsi:type="And">
+                        <operand localId="364" locator="107:11-108:73" xsi:type="And">
+                           <operand localId="373" locator="107:11-107:76" xsi:type="Before">
+                              <signature localId="377" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                              <signature localId="378" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="372" locator="107:36-107:41" xsi:type="Start">
+                                 <operand localId="367" locator="107:11-107:34" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                    <operand localId="366" locator="107:11-107:21" path="effective" scope="A" xsi:type="Property"/>
+                                 </operand>
+                              </operand>
+                              <operand localId="375" xsi:type="ToDateTime">
+                                 <signature localId="376" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                 <operand localId="368" locator="107:50-107:76" xsi:type="End">
+                                    <signature localId="370" xsi:type="IntervalTypeSpecifier">
+                                       <pointType localId="371" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                    </signature>
+                                    <operand localId="369" locator="107:57-107:76" name="Measurement Period" xsi:type="ParameterRef"/>
+                                 </operand>
+                              </operand>
+                           </operand>
+                           <operand localId="389" locator="108:9-108:73" xsi:type="After">
+                              <signature localId="393" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                              <signature localId="394" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="386" locator="108:34-108:37" xsi:type="End">
+                                 <signature localId="387" xsi:type="IntervalTypeSpecifier">
+                                    <pointType localId="388" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                                 </signature>
+                                 <operand localId="381" locator="108:9-108:32" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                    <operand localId="380" locator="108:9-108:19" path="effective" scope="A" xsi:type="Property"/>
+                                 </operand>
+                              </operand>
+                              <operand localId="391" xsi:type="ToDateTime">
+                                 <signature localId="392" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                 <operand localId="382" locator="108:45-108:73" xsi:type="Start">
+                                    <signature localId="384" xsi:type="IntervalTypeSpecifier">
+                                       <pointType localId="385" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                    </signature>
+                                    <operand localId="383" locator="108:54-108:73" name="Measurement Period" xsi:type="ParameterRef"/>
+                                 </operand>
+                              </operand>
+                           </operand>
+                        </operand>
+                        <operand localId="410" locator="110:6-110:93" xsi:type="After">
+                           <signature localId="414" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                           <signature localId="415" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="407" locator="110:32-110:35" xsi:type="End">
+                              <signature localId="408" xsi:type="IntervalTypeSpecifier">
+                                 <pointType localId="409" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                              </signature>
+                              <operand localId="397" locator="110:7-110:30" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                 <operand localId="396" locator="110:7-110:17" path="effective" scope="A" xsi:type="Property"/>
+                              </operand>
+                           </operand>
+                           <operand localId="412" xsi:type="ToDateTime">
+                              <signature localId="413" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="398" locator="110:43-110:92" xsi:type="Subtract">
+                                 <signature localId="405" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                 <signature localId="406" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                                 <operand localId="399" locator="110:44-110:70" xsi:type="End">
+                                    <signature localId="401" xsi:type="IntervalTypeSpecifier">
+                                       <pointType localId="402" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                                    </signature>
+                                    <operand localId="400" locator="110:51-110:70" name="Measurement Period" xsi:type="ParameterRef"/>
+                                 </operand>
+                                 <operand localId="404" locator="110:74-110:91" name="LTFU Days" libraryName="Config" xsi:type="ExpressionRef"/>
+                              </operand>
+                           </operand>
+                        </operand>
+                     </where>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="419" locator="112:8-112:37" xsi:type="Not">
+               <operand localId="421" locator="112:12-112:37" name="Has death documented" libraryName="HIE" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="424" locator="118:1-119:6" name="Initial Population" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="424">
+               <a:s r="425">/*
+ * As defined by Member States
+ */
+define &quot;Initial Population&quot;:
+  true</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="425" locator="119:3-119:6" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+      </def>
+      <def localId="426" locator="125:1-126:3" name="Measure Observation" context="Patient" accessLevel="Public" xsi:type="FunctionDef">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="426">
+               <a:s>/*
+ * NOTE: Modeled as a Continuous Variable measure because this is an estimated denominator proportion measure
+ */
+
+define function &quot;Measure Observation&quot;(Patient &quot;Patient&quot;):
+  </a:s>
+               <a:s r="431">
+                  <a:s r="431">1</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="126:3" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         <operand localId="428" name="Patient">
+            <operandTypeSpecifier localId="427" locator="125:47-125:55" name="fhir:Patient" xsi:type="NamedTypeSpecifier"/>
+         </operand>
+      </def>
+      <def localId="434" locator="132:1-133:42" name="Administrative Gender Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="434">
+               <a:s>/*
+ * Disaggregators
+ */
+
+define &quot;Administrative Gender Stratifier&quot;:
+	</a:s>
+               <a:s r="436">
+                  <a:s r="435">
+                     <a:s>HIE</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="436">
+                     <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="436" locator="133:2-133:42" name="By Administrative Gender Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="439" locator="135:1-136:24" name="Age Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="439">
+               <a:s>define &quot;Age Stratifier&quot;:
+	</a:s>
+               <a:s r="441">
+                  <a:s r="440">
+                     <a:s>HIE</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="441">
+                     <a:s>&quot;By Age Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="441" locator="136:2-136:24" name="By Age Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="444" locator="138:1-139:38" name="Geographic Region Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="444">
+               <a:s>define &quot;Geographic Region Stratifier&quot;:
+	</a:s>
+               <a:s r="446">
+                  <a:s r="445">
+                     <a:s>HIE</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="446">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="446" locator="139:2-139:38" name="By Geographic Region Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="449" locator="141:1-142:20" name="patientGroups Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="449">
+               <a:s>define &quot;patientGroups Stratifier&quot;:
+	</a:s>
+               <a:s r="451">
+                  <a:s r="450">
+                     <a:s>HIE</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="451">
+                     <a:s>&quot;patientGroups&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="451" locator="142:2-142:20" name="patientGroups" libraryName="HIE" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="454" locator="144:1-148:33" name="Stratification" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="454">
+               <a:s>define &quot;Stratification&quot;:
+ </a:s>
+               <a:s r="494">
+                  <a:s r="484">
+                     <a:s r="477">
+                        <a:s r="472">
+                           <a:s r="467">
+                              <a:s r="462">
+                                 <a:s r="461">
+                                    <a:s r="460">
+                                       <a:s>HIE</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="461">
+                                       <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="462">
+                                    <a:s>code</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> 
+  + </a:s>
+                              <a:s r="463">
+                                 <a:s>':'</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="469">
+                              <a:s r="468">
+                                 <a:s>HIE</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="469">
+                                 <a:s>&quot;By Age Stratifier&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
++ </a:s>
+                        <a:s r="473">
+                           <a:s>':'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="479">
+                        <a:s r="478">
+                           <a:s>HIE</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="479">
+                           <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
++ </a:s>
+                  <a:s r="491">
+                     <a:s>Combine(</a:s>
+                     <a:s r="486">
+                        <a:s r="485">
+                           <a:s>HIE</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="486">
+                           <a:s>patientGroups</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>, </a:s>
+                     <a:s r="487">
+                        <a:s>':'</a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="494" locator="145:2-148:33" xsi:type="Concatenate">
+            <operand localId="484" locator="145:2-147:45" xsi:type="Concatenate">
+               <operand localId="477" locator="145:2-147:5" xsi:type="Concatenate">
+                  <operand localId="472" locator="145:2-146:33" xsi:type="Concatenate">
+                     <operand localId="467" locator="145:2-146:7" xsi:type="Concatenate">
+                        <operand localId="462" locator="145:2-145:47" path="code" xsi:type="Property">
+                           <source localId="461" locator="145:2-145:42" name="By Administrative Gender Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="463" locator="146:5-146:7" valueType="t:String" value=":" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="469" locator="146:11-146:33" name="By Age Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="473" locator="147:3-147:5" valueType="t:String" value=":" xsi:type="Literal"/>
+               </operand>
+               <operand localId="480" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <signature localId="481" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="479" locator="147:9-147:45" name="By Geographic Region Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="491" locator="148:3-148:33" xsi:type="Combine">
+               <source localId="486" locator="148:11-148:27" name="patientGroups" libraryName="HIE" xsi:type="ExpressionRef"/>
+               <separator localId="487" locator="148:30-148:32" valueType="t:String" value=":" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

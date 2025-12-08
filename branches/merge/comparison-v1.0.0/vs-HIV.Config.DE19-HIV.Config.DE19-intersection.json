@@ -1,0 +1,9 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-414",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-414",
+  "name" : "IntersectionHIVConfigDE19AndHIVConfigDE19",
+  "title" : "Intersection of Other priority populations ValueSet And Other priority populations ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00"
+}

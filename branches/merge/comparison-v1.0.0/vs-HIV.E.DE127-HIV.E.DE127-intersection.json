@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-786",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-786",
+  "name" : "IntersectionHIVEDE127AndHIVEDE127",
+  "title" : "Intersection of Infant feeding practice ValueSet And Infant feeding practice ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE128",
+        "display" : "Exclusively breastfeeding"
+      },
+      {
+        "code" : "HIV.E.DE129",
+        "display" : "Replacement feeding"
+      },
+      {
+        "code" : "HIV.E.DE130",
+        "display" : "Mixed feeding"
+      }]
+    }]
+  }
+}

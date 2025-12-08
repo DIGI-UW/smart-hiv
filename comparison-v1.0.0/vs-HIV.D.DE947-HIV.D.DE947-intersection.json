@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-909",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-909",
+  "name" : "IntersectionHIVDDE947AndHIVDDE947",
+  "title" : "Intersection of TB treatment history ValueSet And TB treatment history ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE948",
+        "display" : "New"
+      },
+      {
+        "code" : "HIV.D.DE949",
+        "display" : "Recurrent"
+      },
+      {
+        "code" : "HIV.D.DE950",
+        "display" : "Re-registered"
+      },
+      {
+        "code" : "HIV.D.DE951",
+        "display" : "Unknown"
+      }]
+    }]
+  }
+}

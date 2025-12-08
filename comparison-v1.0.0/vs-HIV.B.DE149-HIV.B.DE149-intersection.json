@@ -1,0 +1,45 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-360",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-360",
+  "name" : "IntersectionHIVBDE149AndHIVBDE149",
+  "title" : "Intersection of Prevention services offered and referrals ValueSet And Prevention services offered and referrals ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE150",
+        "display" : "Offer male and female condoms and condom-compatible lubricants"
+      },
+      {
+        "code" : "HIV.B.DE151",
+        "display" : "Offer pre-exposure prophylaxis (PrEP) for people at elevated risk for HIV acquisition"
+      },
+      {
+        "code" : "HIV.B.DE152",
+        "display" : "Offer post-exposure prophylaxis (PEP) following suspected exposure"
+      },
+      {
+        "code" : "HIV.B.DE153",
+        "display" : "Voluntary medical male circumcision (VMMC)"
+      },
+      {
+        "code" : "HIV.B.DE154",
+        "display" : "Harm reduction for people who inject drugs"
+      },
+      {
+        "code" : "HIV.B.DE155",
+        "display" : "Behavioural interventions to support risk reduction, particularly for people with HIV and members of key populations"
+      },
+      {
+        "code" : "HIV.B.DE156",
+        "display" : "HIV testing for partners and biological children"
+      },
+      {
+        "code" : "HIV.B.DE157",
+        "display" : "HIV testing for partners and social contacts of people from key populations, where appropriate"
+      }]
+    }]
+  }
+}

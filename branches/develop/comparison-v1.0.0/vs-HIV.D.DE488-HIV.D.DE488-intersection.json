@@ -1,0 +1,9 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-693",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-693",
+  "name" : "IntersectionHIVDDE488AndHIVDDE488",
+  "title" : "Intersection of Reason(s) for substitution within second-line regimen ValueSet And Reason(s) for substitution within second-line regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-329",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-329",
+  "name" : "UnionHIVBDE98AndHIVBDE98",
+  "title" : "Union of Test result of HIV assay 2 ValueSet And Test result of HIV assay 2 ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE99",
+        "display" : "Reactive"
+      },
+      {
+        "code" : "HIV.B.DE100",
+        "display" : "Non-reactive"
+      },
+      {
+        "code" : "HIV.B.DE101",
+        "display" : "Invalid"
+      }]
+    }]
+  }
+}

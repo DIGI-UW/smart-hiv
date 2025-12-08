@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-731",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-731",
+  "name" : "UnionHIVDDE56AndHIVDDE56",
+  "title" : "Union of Antiretroviral (ARV) drugs received prior to enrolment ValueSet And Antiretroviral (ARV) drugs received prior to enrolment ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE57",
+        "display" : "No prior ARVs"
+      },
+      {
+        "code" : "HIV.D.DE58",
+        "display" : "Received ARVs prior without records/documentation"
+      },
+      {
+        "code" : "HIV.D.DE59",
+        "display" : "Received ARVs during pregnancy or breastfeeding"
+      },
+      {
+        "code" : "HIV.D.DE60",
+        "display" : "Received ARVs for PEP or PrEP"
+      },
+      {
+        "code" : "HIV.D.DE61",
+        "display" : "ARV prophylaxis for an HIV-exposed infant"
+      }]
+    }]
+  }
+}

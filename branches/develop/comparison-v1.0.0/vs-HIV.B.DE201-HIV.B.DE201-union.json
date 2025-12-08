@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-383",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-383",
+  "name" : "UnionHIVBDE201AndHIVBDE201",
+  "title" : "Union of Adverse event severity ValueSet And Adverse event severity ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE202",
+        "display" : "Moderate"
+      },
+      {
+        "code" : "HIV.B.DE203",
+        "display" : "Severe"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-524",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-524",
+  "name" : "UnionHIVCDE31AndHIVCDE31",
+  "title" : "Union of PEP history ValueSet And PEP history ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE32",
+        "display" : "First-time user"
+      },
+      {
+        "code" : "HIV.C.DE33",
+        "display" : "Repeat user"
+      }]
+    }]
+  }
+}

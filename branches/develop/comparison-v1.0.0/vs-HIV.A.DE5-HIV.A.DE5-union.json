@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-326",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-326",
+  "name" : "UnionHIVADE5AndHIVADE5",
+  "title" : "Union of Referred by ValueSet And Referred by ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.A.DE6",
+        "display" : "Community"
+      },
+      {
+        "code" : "HIV.A.DE7",
+        "display" : "Facility"
+      }]
+    }]
+  }
+}

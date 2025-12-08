@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-552",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-552",
+  "name" : "IntersectionHIVCDE95AndHIVCDE95",
+  "title" : "Intersection of Alternative PEP backbone regimen ValueSet And Alternative PEP backbone regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE96",
+        "display" : "ABC + 3TC"
+      },
+      {
+        "code" : "HIV.C.DE97",
+        "display" : "TDF + 3TC"
+      },
+      {
+        "code" : "HIV.C.DE98",
+        "display" : "TDF + FTC"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-848",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-848",
+  "name" : "UnionHIVDDE81AndHIVDDE81",
+  "title" : "Union of Alternative second-line ART regimen ValueSet And Alternative second-line ART regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-449",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-449",
+  "name" : "UnionHIVBDE50AndHIVBDE50",
+  "title" : "Union of Key population member type ValueSet And Key population member type ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE51",
+        "display" : "Sex worker"
+      },
+      {
+        "code" : "HIV.B.DE52",
+        "display" : "Men who have sex with men"
+      },
+      {
+        "code" : "HIV.B.DE53",
+        "display" : "Trans and gender-diverse people"
+      },
+      {
+        "code" : "HIV.B.DE54",
+        "display" : "People who inject drugs"
+      },
+      {
+        "code" : "HIV.B.DE55",
+        "display" : "People living in prisons and other closed settings"
+      }]
+    }]
+  }
+}

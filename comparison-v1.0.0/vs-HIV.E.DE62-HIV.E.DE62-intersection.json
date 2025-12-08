@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-1029",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-1029",
+  "name" : "IntersectionHIVEDE62AndHIVEDE62",
+  "title" : "Intersection of Preterm birth status ValueSet And Preterm birth status ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE63",
+        "display" : "Not preterm"
+      },
+      {
+        "code" : "HIV.E.DE64",
+        "display" : "Preterm (<37 weeks gestation)"
+      },
+      {
+        "code" : "HIV.E.DE65",
+        "display" : "Very preterm (<32 weeks gestation)"
+      }]
+    }]
+  }
+}

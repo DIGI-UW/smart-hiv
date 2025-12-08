@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-237",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-237",
+  "name" : "IntersectionHIVBDE201AndHIVBDE201",
+  "title" : "Intersection of Adverse event severity ValueSet And Adverse event severity ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE202",
+        "display" : "Moderate"
+      },
+      {
+        "code" : "HIV.B.DE203",
+        "display" : "Severe"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-687",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-687",
+  "name" : "IntersectionHIVDDE485AndHIVDDE485",
+  "title" : "Intersection of New regimen after switch to second-line regimen ValueSet And New regimen after switch to second-line regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-579",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-579",
+  "name" : "IntersectionHIVDDE1034AndHIVDDE1034",
+  "title" : "Intersection of TB preventive treatment (TPT) status ValueSet And TB preventive treatment (TPT) status ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE1035",
+        "display" : "Not started"
+      },
+      {
+        "code" : "HIV.D.DE1036",
+        "display" : "On TPT"
+      },
+      {
+        "code" : "HIV.D.DE1037",
+        "display" : "On TPT with interruptions"
+      },
+      {
+        "code" : "HIV.D.DE1038",
+        "display" : "On hold"
+      },
+      {
+        "code" : "HIV.D.DE1039",
+        "display" : "Completed"
+      }]
+    }]
+  }
+}

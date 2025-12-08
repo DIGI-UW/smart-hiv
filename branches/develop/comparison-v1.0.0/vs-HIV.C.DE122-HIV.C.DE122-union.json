@@ -1,0 +1,9 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-494",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-494",
+  "name" : "UnionHIVCDE122AndHIVCDE122",
+  "title" : "Union of PrEP regimen prescribed ValueSet And PrEP regimen prescribed ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00"
+}

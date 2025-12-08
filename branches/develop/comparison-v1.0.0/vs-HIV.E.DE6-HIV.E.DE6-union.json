@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-1025",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-1025",
+  "name" : "UnionHIVEDE6AndHIVEDE6",
+  "title" : "Union of Source of gestational age ValueSet And Source of gestational age ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE7",
+        "display" : "Last menstrual period (LMP)"
+      },
+      {
+        "code" : "HIV.E.DE8",
+        "display" : "Ultrasound"
+      },
+      {
+        "code" : "HIV.E.DE9",
+        "display" : "Symphysis fundal height (SFH) or abdominal palpation"
+      }]
+    }]
+  }
+}

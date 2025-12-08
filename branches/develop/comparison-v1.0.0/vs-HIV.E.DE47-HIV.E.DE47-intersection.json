@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-1020",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-1020",
+  "name" : "IntersectionHIVEDE47AndHIVEDE47",
+  "title" : "Intersection of Pregnancy outcome ValueSet And Pregnancy outcome ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE48",
+        "display" : "Live birth"
+      },
+      {
+        "code" : "HIV.E.DE49",
+        "display" : "Early fetal loss/miscarriage"
+      },
+      {
+        "code" : "HIV.E.DE50",
+        "display" : "Induced abortion"
+      },
+      {
+        "code" : "HIV.E.DE51",
+        "display" : "Stillbirth"
+      }]
+    }]
+  }
+}

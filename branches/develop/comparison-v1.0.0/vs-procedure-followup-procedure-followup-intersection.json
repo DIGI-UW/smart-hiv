@@ -1,0 +1,43 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-189",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-189",
+  "name" : "IntersectionProcedureFollowUpCodes(SNOMEDCT)AndProcedureFollowUpCodes(SNOMEDCT)",
+  "title" : "Intersection of Procedure Follow up Codes (SNOMED CT) And Procedure Follow up Codes (SNOMED CT)",
+  "status" : "draft",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "18949003"
+      },
+      {
+        "code" : "30549001"
+      },
+      {
+        "code" : "241031001"
+      },
+      {
+        "code" : "35963001"
+      },
+      {
+        "code" : "225164002"
+      },
+      {
+        "code" : "447346005"
+      },
+      {
+        "code" : "229506003"
+      },
+      {
+        "code" : "274441001"
+      },
+      {
+        "code" : "394725008"
+      },
+      {
+        "code" : "359825008"
+      }]
+    }]
+  }
+}

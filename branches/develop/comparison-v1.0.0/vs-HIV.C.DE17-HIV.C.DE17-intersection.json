@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-519",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-519",
+  "name" : "IntersectionHIVCDE17AndHIVCDE17",
+  "title" : "Intersection of Current PrEP regimen ValueSet And Current PrEP regimen ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE18",
+        "display" : "TDF + FTC"
+      },
+      {
+        "code" : "HIV.C.DE19",
+        "display" : "TDF"
+      },
+      {
+        "code" : "HIV.C.DE20",
+        "display" : "TDF + 3TC"
+      },
+      {
+        "code" : "HIV.C.DE21",
+        "display" : "Other TDF-based regimen"
+      },
+      {
+        "code" : "HIV.C.DE22",
+        "display" : "Dapivirine vaginal ring (DVR)"
+      },
+      {
+        "code" : "HIV.C.DE23",
+        "display" : "CAB-LA"
+      }]
+    }]
+  }
+}

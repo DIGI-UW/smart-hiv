@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-972",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-972",
+  "name" : "IntersectionHIVEDE194AndHIVEDE194",
+  "title" : "Intersection of Assay number in testing strategy ValueSet And Assay number in testing strategy ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE195",
+        "display" : "Assay 0"
+      },
+      {
+        "code" : "HIV.E.DE196",
+        "display" : "Assay 1"
+      },
+      {
+        "code" : "HIV.E.DE197",
+        "display" : "Assay 2"
+      },
+      {
+        "code" : "HIV.E.DE198",
+        "display" : "Assay 3"
+      },
+      {
+        "code" : "HIV.E.DE93",
+        "display" : "Assay 1 repeated"
+      },
+      {
+        "code" : "HIV.E.DE94",
+        "display" : "Test result of HIV assay 1"
+      }]
+    }]
+  }
+}

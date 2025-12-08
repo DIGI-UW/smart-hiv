@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-503",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-503",
+  "name" : "UnionHIVCDE138AndHIVCDE138",
+  "title" : "Union of Condom type ValueSet And Condom type ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE139",
+        "display" : "Male condom"
+      },
+      {
+        "code" : "HIV.C.DE140",
+        "display" : "Female condom"
+      }]
+    }]
+  }
+}

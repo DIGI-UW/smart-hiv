@@ -1,0 +1,114 @@
+# HIV.D4.DT TB Screening Decision Tables - WHO SMART Guidelines - HIV v0.4.4
+
+* [**Table of Contents**](toc.md)
+* [**Indices**](indices.md)
+* [**Artifact Index**](artifacts.md)
+* **HIV.D4.DT TB Screening Decision Tables**
+
+## PlanDefinition: HIV.D4.DT TB Screening Decision Tables (Experimental) 
+
+| | |
+| :--- | :--- |
+| *Official URL*:http://smart.who.int/hiv/PlanDefinition/HIVD4DT | *Version*:0.4.4 |
+| Draft as of 2025-12-08 | *Computable Name*:HIVD4DT |
+
+ 
+Screen for TB using one of three algorithms 
+
+* **Actions:**: **Url:**
+  * : [HIV.D4.DT TB Screening Decision Tables](PlanDefinition-HIVD4DT.md)
+* **Actions:**: **Version:**
+  * : 0.4.4
+* **Actions:**: **Title:**
+  * : HIV.D4.DT TB Screening Decision Tables
+* **Actions:**: **Status:**
+  * : draft
+* **Actions:**: **Experimental:**
+  * : true
+* **Actions:**: **Date:**
+  * : 2025-12-08 16:41:10+0000
+* **Actions:**: **Publisher:**
+  * : WHO
+* **Actions:**: **Description:**
+  * : Screen for TB using one of three algorithms
+* **Actions:**: **Libraries:**
+  * : 
+| |
+| :--- |
+| [HIV.D4.DT Logic](Library-HIVD4DTLogic.md) |
+
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "PlanDefinition",
+  "id" : "HIVD4DT",
+  "meta" : {
+    "profile" : [
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition|2.0.0",
+      "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareableplandefinition",
+      "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishableplandefinition"
+    ]
+  },
+  "extension" : [
+    {
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability",
+      "valueCode" : "computable"
+    }
+  ],
+  "url" : "http://smart.who.int/hiv/PlanDefinition/HIVD4DT",
+  "version" : "0.4.4",
+  "name" : "HIVD4DT",
+  "title" : "HIV.D4.DT TB Screening Decision Tables",
+  "type" : {
+    "coding" : [
+      {
+        "system" : "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code" : "eca-rule"
+      }
+    ]
+  },
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2025-12-08T16:41:10+00:00",
+  "publisher" : "WHO",
+  "contact" : [
+    {
+      "name" : "WHO",
+      "telecom" : [
+        {
+          "system" : "url",
+          "value" : "http://who.int"
+        }
+      ]
+    }
+  ],
+  "description" : "Screen for TB using one of three algorithms",
+  "relatedArtifact" : [
+    {
+      "type" : "citation",
+      "citation" : "Consolidated Guidelines on HIV Testing Services (2019)"
+    }
+  ],
+  "library" : ["http://smart.who.int/hiv/Library/HIVD4DTLogic"],
+  "action" : [
+    {
+      "textEquivalent" : "Outcome of TB screening",
+      "definitionCanonical" : "http://smart.who.int/hiv/ActivityDefinition/HIVGuidanceCommunicationRequestActivity",
+      "dynamicValue" : [
+        {
+          "path" : "payload[+].contentString",
+          "expression" : {
+            "language" : "text/cql-identifier",
+            "expression" : "Guidance"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+```

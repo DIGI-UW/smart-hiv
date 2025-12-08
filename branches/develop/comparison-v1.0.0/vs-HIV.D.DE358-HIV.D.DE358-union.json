@@ -1,0 +1,29 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-638",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-638",
+  "name" : "UnionHIVDDE358AndHIVDDE358",
+  "title" : "Union of Clinical stage at start of ART ValueSet And Clinical stage at start of ART ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE359",
+        "display" : "WHO clinical stage 1"
+      },
+      {
+        "code" : "HIV.D.DE360",
+        "display" : "WHO clinical stage 2"
+      },
+      {
+        "code" : "HIV.D.DE361",
+        "display" : "WHO clinical stage 3"
+      },
+      {
+        "code" : "HIV.D.DE362",
+        "display" : "WHO clinical stage 4"
+      }]
+    }]
+  }
+}

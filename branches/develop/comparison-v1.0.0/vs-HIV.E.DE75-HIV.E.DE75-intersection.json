@@ -1,0 +1,17 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-1035",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-1035",
+  "name" : "IntersectionHIVEDE75AndHIVEDE75",
+  "title" : "Intersection of Cause of death of mother ValueSet And Cause of death of mother ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE24",
+        "display" : "Prolonged labour"
+      }]
+    }]
+  }
+}

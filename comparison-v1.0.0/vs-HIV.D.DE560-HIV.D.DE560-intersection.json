@@ -1,0 +1,41 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-735",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-735",
+  "name" : "IntersectionHIVDDE560AndHIVDDE560",
+  "title" : "Intersection of Allergies ValueSet And Allergies ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE561",
+        "display" : "No known allergies"
+      },
+      {
+        "code" : "HIV.D.DE562",
+        "display" : "Don't know of any allergies"
+      },
+      {
+        "code" : "HIV.D.DE563",
+        "display" : "Albendazole"
+      },
+      {
+        "code" : "HIV.D.DE564",
+        "display" : "Malaria medication (sulfadoxine-pyrimethamine)"
+      },
+      {
+        "code" : "HIV.D.DE565",
+        "display" : "Penicillin"
+      },
+      {
+        "code" : "HIV.D.DE566",
+        "display" : "Tenofovir disoproxil fumarate (TDF)"
+      },
+      {
+        "code" : "HIV.D.DE567",
+        "display" : "Other allergies"
+      }]
+    }]
+  }
+}

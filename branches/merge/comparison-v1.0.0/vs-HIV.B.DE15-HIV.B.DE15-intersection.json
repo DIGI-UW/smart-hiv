@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-216",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-216",
+  "name" : "IntersectionHIVBDE15AndHIVBDE15",
+  "title" : "Intersection of Testing entry point ValueSet And Testing entry point ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE16",
+        "display" : "Community-level testing"
+      },
+      {
+        "code" : "HIV.B.DE17",
+        "display" : "Facility-level testing"
+      }]
+    }]
+  }
+}

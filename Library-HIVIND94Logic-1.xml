@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="342">
+         <a:s>/**
+ * Library: HIV.IND.94 Logic
+ * Ref No: CCA.2
+ * Short Name: Pre-invasive cervical disease treatment
+ *
+ * Definition: % of women living with HIV who screened positive for pre-invasive cervical disease and received treatment for it
+ *
+ * Numerator: Number of women living with HIV who received treatment after screening positive for pre-invasive cervical disease and were deemed eligible for treatment in line with the WHO recommendations
+ * Numerator Calculation: COUNT of women with &quot;HIV status&quot;='HIV-positive' AND with a &quot;Date of cervical cancer screening test&quot; in the reporting period for &quot;Cervical cancer screening outcome&quot;='Positive for cervical precancer lesions' AND &quot;Date of treatment for cervical precancer lesions&quot; within 6 months of &quot;Date of cervical cancer screening test&quot;
+ * Numerator Exclusions: 
+ *
+ * Denominator: Number of women living with HIV who screened positive for pre-invasive cervical disease.
+ * Denominator Calculation: COUNT of women with &quot;HIV status&quot;='HIV-positive' AND with a &quot;Date of cervical cancer screening test&quot; in the reporting period for &quot;Cervical cancer screening outcome&quot;='Positive for cervical precancer lesions'
+ * Denominator Exclusions: 
+ *
+ * Disaggregations:
+ * • Age (15–19, 20–24, 25–29, 30–49, 50+ years) 
+ *  • Provider type (public-sector provider, private-sector provider) 
+ *  • Cities and other administrative areas of epidemiologic importance
+ *
+ * Disaggregation Elements: Age
+ *
+ * Numerator and Denominator Elements:
+ * Cervical cancer screening outcome 
+ *  Date of cervical cancer screening test 
+ *  Date of treatment for cervical precancer lesions 
+ *  HIV status
+ *
+ * Reference: Consolidated guidelines on person-centred HIV strategic information: strengthening routine data for impact. Geneva: World Health Organization; 2022
+ * 
+ * Data Concepts:
+ * HIV.A.DE17: Age | Calculated age (number of years) of the client based on date of birth
+ * HIV.B.DE115: HIV status | HIV status reported after applying the national HIV testing algorithm. No single HIV test can provide an HIV-positive diagnosis.
+ * HIV.B.DE116: HIV-positive | Client is HIV-positive
+ * HIV.B.DE117: HIV-negative | Client is HIV-negative
+ * HIV.B.DE118: Unknown | Client has unknown HIV status
+ * HIV.D.DE656: Date of cervical cancer screening test | Date of cervical cancer screening test
+ * HIV.D.DE706: Cervical cancer screening outcome | Client's screening outcome for cervical cancer
+ * HIV.D.DE707: Positive for cervical precancer lesions | Screening outcome for cervical precancer lesions is positive
+ * HIV.D.DE708: Negative for cervical precancer lesions | Screening outcome for cervical precancer lesions is negative
+ * HIV.D.DE718: Date of treatment for cervical precancer lesions | Date of treatment for cervical precancer lesions
+ *
+ * Additional Context
+ * - what it measures: Progress towards the treatment coverage target of 90% of women with a positive screening test receiving treatment as defined in the Global Strategy for cervical cancer elimination.
+ * - rationale: • To assess availability, access and coverage of pre-invasive cervical disease treatment among women living with HIV who were diagnosed with precancerous lesions upon screening and were deemed eligible for precancer treatment in line with the WHO recommendations for screening and treatment to prevent cervical cancer. | • The WHO Global Strategy targets to eliminate cervical cancer are to vaccinate 90% of eligible girls against human papillomavirus (HPV), to screen 70% of eligible women at least twice in their lifetimes and to effectively treat 90% of those with a positive screening test or a cervical lesion, including palliative care when needed, all by 2030.
+ * - method: Health facility patient registers, patient records |  | Treatment options include thermal ablation, cryotherapy and excision treatment including Large Loop Excision of the Transformation Zone therapy.
+ * 
+ * Suggested Scoring Method: proportion | http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/proportion-measure-cqfm
+ */
+
+/* 
+ * Profiles:
+ * - HIVStatusCondition
+ * - HIVStatusObservation
+ * - CervicalCancerScreening
+ * - CervicalCancerScreeningOutcome
+ */
+
+library HIVIND94Logic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="HIVIND94Logic" system="http://smart.who.int/hiv"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="62:1-62:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>// Included Libraries
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="64:1-64:44" localIdentifier="HIC" path="http://smart.who.int/hiv/HIVCommon" version="0.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVCommon</a:s>
+               </a:s>
+               <a:s> version '0.0.1' called HIC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="65:1-65:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="67:1-67:29" localIdentifier="WCom" path="http://smart.who.int/hiv/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="68:1-68:29" localIdentifier="HE" path="http://smart.who.int/hiv/HIVElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVElements</a:s>
+               </a:s>
+               <a:s> called HE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="69:1-69:39" localIdentifier="HIE" path="http://smart.who.int/hiv/HIVIndicatorElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVIndicatorElements</a:s>
+               </a:s>
+               <a:s> called HIE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="218" locator="70:1-70:31" localIdentifier="Config" path="http://smart.who.int/hiv/HIVConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVConfig</a:s>
+               </a:s>
+               <a:s> called Config</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="220" locator="74:1-74:88" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="220">
+               <a:s>// Indicator Definition
+parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="232">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="233">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="231">
+                  <a:s r="225">Interval[@2023-01-01, @2023-01-30]</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="231" locator="74:55-74:88" lowClosed="true" highClosed="true" xsi:type="Interval">
+            <low localId="225" locator="74:64-74:74" xsi:type="Date">
+               <year localId="222" valueType="t:Integer" value="2023" xsi:type="Literal"/>
+               <month localId="223" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               <day localId="224" valueType="t:Integer" value="1" xsi:type="Literal"/>
+            </low>
+            <high localId="230" locator="74:77-74:87" xsi:type="Date">
+               <year localId="227" valueType="t:Integer" value="2023" xsi:type="Literal"/>
+               <month localId="228" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               <day localId="229" valueType="t:Integer" value="30" xsi:type="Literal"/>
+            </high>
+         </default>
+         <parameterTypeSpecifier localId="232" locator="74:32-74:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="233" locator="74:41-74:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="238" locator="76:1-76:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="236" locator="76:1-76:15" name="Patient" context="Patient">
+         <expression localId="237" xsi:type="SingletonFrom">
+            <operand localId="235" locator="76:1-76:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="241" locator="83:1-84:6" name="Initial Population" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="241">
+               <a:s r="242">/* Populations */
+
+/*
+ *Initial Population
+ */
+
+define &quot;Initial Population&quot;:
+  true</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="242" locator="84:3-84:6" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+      </def>
+      <def localId="245" locator="93:1-97:174" name="Numerator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="245">
+               <a:s>/**
+ * Numerator
+ * 
+ * Definition: Number of women living with HIV who received treatment after screening positive for pre-invasive cervical disease and were deemed eligible for treatment in line with the WHO recommendations
+ * Calculation: COUNT of women with &quot;HIV status&quot;='HIV-positive' AND with a &quot;Date of cervical cancer screening test&quot; in the reporting period for &quot;Cervical cancer screening outcome&quot;='Positive for cervical precancer lesions' AND &quot;Date of treatment for cervical precancer lesions&quot; within 6 months of &quot;Date of cervical cancer screening test&quot;
+ */
+
+define &quot;Numerator&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s r="248">
+                     <a:s r="247">
+                        <a:s>HIE</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="248">
+                        <a:s>&quot;Has HIV-positive Status&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="249">
+                     <a:s>exists</a:s>
+                     <a:s r="296">
+                        <a:s>(</a:s>
+                        <a:s r="296">
+                           <a:s>
+                              <a:s r="250">
+                                 <a:s r="252">
+                                    <a:s>
+                                       <a:s>HE.&quot;Positive for cervical precancer lesions&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> O</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+  </a:s>
+                           <a:s r="254">
+                              <a:s>where </a:s>
+                              <a:s r="254">
+                                 <a:s r="259">
+                                    <a:s r="257">
+                                       <a:s r="256">
+                                          <a:s r="255">
+                                             <a:s>O</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="256">
+                                             <a:s>effective</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="257">
+                                          <a:s>toInterval()</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="259"> during </a:s>
+                                    <a:s r="258">
+                                       <a:s>&quot;Measurement Period&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+  and </a:s>
+                                 <a:s r="272">
+                                    <a:s>exists</a:s>
+                                    <a:s r="295">
+                                       <a:s>(</a:s>
+                                       <a:s r="295">
+                                          <a:s>
+                                             <a:s r="273">
+                                                <a:s r="275">
+                                                   <a:s>
+                                                      <a:s>HE.&quot;Date of treatment for cervical precancer lesions&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> T</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s> </a:s>
+                                          <a:s r="277">
+                                             <a:s>where </a:s>
+                                             <a:s r="277">
+                                                <a:s r="278">
+                                                   <a:s>months between </a:s>
+                                                   <a:s r="279">
+                                                      <a:s>start of </a:s>
+                                                      <a:s r="282">
+                                                         <a:s r="281">
+                                                            <a:s r="280">
+                                                               <a:s>T</a:s>
+                                                            </a:s>
+                                                            <a:s>.</a:s>
+                                                            <a:s r="281">
+                                                               <a:s>performed</a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                         <a:s>.</a:s>
+                                                         <a:s r="282">
+                                                            <a:s>toInterval()</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                   <a:s> and </a:s>
+                                                   <a:s r="283">
+                                                      <a:s>start of </a:s>
+                                                      <a:s r="286">
+                                                         <a:s r="285">
+                                                            <a:s r="284">
+                                                               <a:s>O</a:s>
+                                                            </a:s>
+                                                            <a:s>.</a:s>
+                                                            <a:s r="285">
+                                                               <a:s>effective</a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                         <a:s>.</a:s>
+                                                         <a:s r="286">
+                                                            <a:s>toInterval()</a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> &lt; </a:s>
+                                                <a:s r="289">
+                                                   <a:s>6 months</a:s>
+                                                </a:s>
+                                             </a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>)</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="94:3-97:174" xsi:type="And">
+            <operand localId="248" locator="94:3-94:31" name="Has HIV-positive Status" libraryName="HIE" xsi:type="ExpressionRef"/>
+            <operand localId="249" locator="95:3-97:174" xsi:type="Exists">
+               <signature localId="297" xsi:type="ListTypeSpecifier">
+                  <elementType localId="298" name="fhir:Observation" xsi:type="NamedTypeSpecifier"/>
+               </signature>
+               <operand localId="296" locator="95:9-97:174" xsi:type="Query">
+                  <source localId="250" locator="95:10-95:55" alias="O">
+                     <expression localId="252" locator="95:10-95:53" name="Positive for cervical precancer lesions" libraryName="HE" xsi:type="ExpressionRef"/>
+                  </source>
+                  <where localId="254" locator="96:3-97:173" xsi:type="And">
+                     <operand localId="259" locator="96:9-96:60" xsi:type="IncludedIn">
+                        <operand localId="257" locator="96:9-96:32" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                           <operand localId="256" locator="96:9-96:19" path="effective" scope="O" xsi:type="Property"/>
+                        </operand>
+                        <operand localId="260" xsi:type="Interval">
+                           <low localId="263" xsi:type="ToDateTime">
+                              <signature localId="264" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="261" path="low" xsi:type="Property">
+                                 <source localId="258" locator="96:41-96:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                              </operand>
+                           </low>
+                           <lowClosedExpression localId="265" path="lowClosed" xsi:type="Property">
+                              <source localId="258" locator="96:41-96:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                           </lowClosedExpression>
+                           <high localId="268" xsi:type="ToDateTime">
+                              <signature localId="269" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="266" path="high" xsi:type="Property">
+                                 <source localId="258" locator="96:41-96:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                              </operand>
+                           </high>
+                           <highClosedExpression localId="270" path="highClosed" xsi:type="Property">
+                              <source localId="258" locator="96:41-96:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                           </highClosedExpression>
+                        </operand>
+                     </operand>
+                     <operand localId="272" locator="97:7-97:173" xsi:type="Exists">
+                        <operand localId="295" locator="97:13-97:173" xsi:type="Query">
+                           <source localId="273" locator="97:14-97:68" alias="T">
+                              <expression localId="275" locator="97:14-97:66" name="Date of treatment for cervical precancer lesions" libraryName="HE" xsi:type="ExpressionRef"/>
+                           </source>
+                           <where localId="277" locator="97:70-97:172" xsi:type="Less">
+                              <signature localId="293" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                              <signature localId="294" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="291" xsi:type="ToQuantity">
+                                 <signature localId="292" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+                                 <operand localId="278" locator="97:76-97:161" precision="Month" xsi:type="DurationBetween">
+                                    <signature localId="287" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                                    <signature localId="288" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                                    <operand localId="279" locator="97:91-97:123" xsi:type="Start">
+                                       <operand localId="282" locator="97:100-97:123" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                          <operand localId="281" locator="97:100-97:110" path="performed" scope="T" xsi:type="Property"/>
+                                       </operand>
+                                    </operand>
+                                    <operand localId="283" locator="97:129-97:161" xsi:type="Start">
+                                       <operand localId="286" locator="97:138-97:161" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                                          <operand localId="285" locator="97:138-97:148" path="effective" scope="O" xsi:type="Property"/>
+                                       </operand>
+                                    </operand>
+                                 </operand>
+                              </operand>
+                              <operand localId="289" locator="97:165-97:172" value="6" unit="months" xsi:type="Quantity"/>
+                           </where>
+                        </operand>
+                     </operand>
+                  </where>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="301" locator="107:1-110:61" name="Denominator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="301">
+               <a:s>/**
+ * Denominator
+ *
+ * Definition: Number of women living with HIV who screened positive for pre-invasive cervical disease.
+ * Calculation: COUNT of women with &quot;HIV status&quot;='HIV-positive' AND with a &quot;Date of cervical cancer screening test&quot; in the reporting period for &quot;Cervical cancer screening outcome&quot;='Positive for cervical precancer lesions'
+ */
+
+define &quot;Denominator&quot;:
+  </a:s>
+               <a:s r="302">
+                  <a:s r="304">
+                     <a:s r="303">
+                        <a:s>HIE</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="304">
+                        <a:s>&quot;Has HIV-positive Status&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="305">
+                     <a:s>exists</a:s>
+                     <a:s r="327">
+                        <a:s>(</a:s>
+                        <a:s r="327">
+                           <a:s>
+                              <a:s r="306">
+                                 <a:s r="308">
+                                    <a:s>
+                                       <a:s>HE.&quot;Positive for cervical precancer lesions&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> O</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+  </a:s>
+                           <a:s r="314">
+                              <a:s>where </a:s>
+                              <a:s r="314">
+                                 <a:s r="312">
+                                    <a:s r="311">
+                                       <a:s r="310">
+                                          <a:s>O</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="311">
+                                          <a:s>effective</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="312">
+                                       <a:s>toInterval()</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="314"> during </a:s>
+                                 <a:s r="313">
+                                    <a:s>&quot;Measurement Period&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="302" locator="108:3-110:61" xsi:type="And">
+            <operand localId="304" locator="108:3-108:31" name="Has HIV-positive Status" libraryName="HIE" xsi:type="ExpressionRef"/>
+            <operand localId="305" locator="109:3-110:61" xsi:type="Exists">
+               <signature localId="328" xsi:type="ListTypeSpecifier">
+                  <elementType localId="329" name="fhir:Observation" xsi:type="NamedTypeSpecifier"/>
+               </signature>
+               <operand localId="327" locator="109:9-110:61" xsi:type="Query">
+                  <source localId="306" locator="109:10-109:55" alias="O">
+                     <expression localId="308" locator="109:10-109:53" name="Positive for cervical precancer lesions" libraryName="HE" xsi:type="ExpressionRef"/>
+                  </source>
+                  <where localId="314" locator="110:3-110:60" xsi:type="IncludedIn">
+                     <operand localId="312" locator="110:9-110:32" name="toInterval" libraryName="WCom" xsi:type="FunctionRef">
+                        <operand localId="311" locator="110:9-110:19" path="effective" scope="O" xsi:type="Property"/>
+                     </operand>
+                     <operand localId="315" xsi:type="Interval">
+                        <low localId="318" xsi:type="ToDateTime">
+                           <signature localId="319" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="316" path="low" xsi:type="Property">
+                              <source localId="313" locator="110:41-110:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                           </operand>
+                        </low>
+                        <lowClosedExpression localId="320" path="lowClosed" xsi:type="Property">
+                           <source localId="313" locator="110:41-110:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                        </lowClosedExpression>
+                        <high localId="323" xsi:type="ToDateTime">
+                           <signature localId="324" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="321" path="high" xsi:type="Property">
+                              <source localId="313" locator="110:41-110:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                           </operand>
+                        </high>
+                        <highClosedExpression localId="325" path="highClosed" xsi:type="Property">
+                           <source localId="313" locator="110:41-110:60" name="Measurement Period" xsi:type="ParameterRef"/>
+                        </highClosedExpression>
+                     </operand>
+                  </where>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="332" locator="119:1-120:26" name="Age Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="332">
+               <a:s>/* end Populations */
+
+/*
+ * Disaggregators
+ */
+
+define &quot;Age Stratifier&quot;:
+	</a:s>
+               <a:s r="334">
+                  <a:s r="333">
+                     <a:s>HIE</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="334">
+                     <a:s>&quot;By Age Stratifier 9&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="334" locator="120:2-120:26" name="By Age Stratifier 9" libraryName="HIE" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="337" locator="122:1-123:38" name="Geographic Region Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="337">
+               <a:s>define &quot;Geographic Region Stratifier&quot;:
+	</a:s>
+               <a:s r="339">
+                  <a:s r="338">
+                     <a:s>HIE</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="339">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="339" locator="123:2-123:38" name="By Geographic Region Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="342" locator="128:1-130:45" name="Stratification" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="342">
+               <a:s>define &quot;Stratification&quot;:
+</a:s>
+               <a:s r="358">
+                  <a:s r="351">
+                     <a:s r="346">
+                        <a:s r="345">
+                           <a:s>HIE</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="346">
+                           <a:s>&quot;By Age Stratifier 9&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
++ </a:s>
+                     <a:s r="347">
+                        <a:s>':'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="353">
+                     <a:s r="352">
+                        <a:s>HIE</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="353">
+                        <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="358" locator="129:1-130:45" xsi:type="Concatenate">
+            <operand localId="351" locator="129:1-130:5" xsi:type="Concatenate">
+               <operand localId="346" locator="129:1-129:25" name="By Age Stratifier 9" libraryName="HIE" xsi:type="ExpressionRef"/>
+               <operand localId="347" locator="130:3-130:5" valueType="t:String" value=":" xsi:type="Literal"/>
+            </operand>
+            <operand localId="354" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <signature localId="355" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="353" locator="130:9-130:45" name="By Geographic Region Stratifier" libraryName="HIE" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

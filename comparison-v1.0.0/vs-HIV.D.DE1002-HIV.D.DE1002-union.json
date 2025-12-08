@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-566",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-566",
+  "name" : "UnionHIVDDE1002AndHIVDDE1002",
+  "title" : "Union of TB treatment outcome ValueSet And TB treatment outcome ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE1003",
+        "display" : "Treatment failed"
+      },
+      {
+        "code" : "HIV.D.DE1004",
+        "display" : "Cured"
+      },
+      {
+        "code" : "HIV.D.DE1005",
+        "display" : "Treatment completed"
+      },
+      {
+        "code" : "HIV.D.DE1006",
+        "display" : "Died"
+      },
+      {
+        "code" : "HIV.D.DE1007",
+        "display" : "Lost to follow-up"
+      },
+      {
+        "code" : "HIV.D.DE1008",
+        "display" : "Not evaluated"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-261",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-261",
+  "name" : "IntersectionHIVBDE261AndHIVBDE261",
+  "title" : "Intersection of Type of specimen ValueSet And Type of specimen ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE262",
+        "display" : "Blood"
+      },
+      {
+        "code" : "HIV.B.DE263",
+        "display" : "Urine"
+      },
+      {
+        "code" : "HIV.B.DE264",
+        "display" : "Cervical or vaginal swab"
+      },
+      {
+        "code" : "HIV.B.DE265",
+        "display" : "Urethral or penile swab"
+      },
+      {
+        "code" : "HIV.B.DE266",
+        "display" : "Rectal swab"
+      },
+      {
+        "code" : "HIV.B.DE267",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

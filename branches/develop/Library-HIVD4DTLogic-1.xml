@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:t name="DecisionID" value="HIV.D4.DT"/>
+      <a:t name="BusinessRule"/>
+      <a:t name="Trigger"/>
+      <a:t name="HitPolicy" value="Rule Order"/>
+      <a:t name="Description" value="Data Concepts:&#xa;&#xa;&#xa;Consolidated guidelines on HIV prevention, testing, treatment, service delivery and monitoring: recommendations for a public health approach (2021) Chapter 5: Advanced HIV Disease. Figure 5.1: Algorithm for providing a package of care for people with advanced HIV disease."/>
+      <a:s r="447">
+         <a:s>/**
+Library: HIV.D4.DT Logic
+
+@DecisionID: HIV.D4.DT
+@BusinessRule: 
+@Trigger: 
+@HitPolicy: Rule Order
+@Description:
+
+Data Concepts:
+
+
+Consolidated guidelines on HIV prevention, testing, treatment, service delivery and monitoring: recommendations for a public health approach (2021) Chapter 5: Advanced HIV Disease. Figure 5.1: Algorithm for providing a package of care for people with advanced HIV disease.
+*/
+library HIVD4DTLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="HIVD4DTLogic" system="http://smart.who.int/hiv"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="17:1-17:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="19:1-19:44" localIdentifier="HIC" path="http://smart.who.int/hiv/HIVCommon" version="0.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVCommon</a:s>
+               </a:s>
+               <a:s> version '0.0.1' called HIC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="20:1-20:35" localIdentifier="Concepts" path="http://smart.who.int/hiv/HIVConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="21:1-21:44" localIdentifier="Elements" path="http://smart.who.int/hiv/HIVEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>HIVEncounterElements</a:s>
+               </a:s>
+               <a:s> called Elements</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="22:1-22:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="24:1-24:29" localIdentifier="WCom" path="http://smart.who.int/hiv/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <contexts>
+      <def localId="221" locator="26:1-26:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="26:1-26:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="26:1-26:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="224" locator="32:1-36:3" name="W4SS single screening algorithm" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="TB screening algorithm"/>
+            <a:t name="pseudocode" value="&quot;TB screening algorithm&quot;='W4SS single screening algorithm'"/>
+            <a:s r="224">
+               <a:s>/*
+  @input: TB screening algorithm
+  @pseudocode: &quot;TB screening algorithm&quot;='W4SS single screening algorithm'
+  */
+define &quot;W4SS single screening algorithm&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>exists</a:s>
+                  <a:s r="242">
+                     <a:s>(
+    </a:s>
+                     <a:s r="242">
+                        <a:s>
+                           <a:s r="226">
+                              <a:s r="228">
+                                 <a:s>
+                                    <a:s>Elements.&quot;TB screening algorithm Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="230">
+                           <a:s>where </a:s>
+                           <a:s r="230">
+                              <a:s r="232">
+                                 <a:s r="231">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="232">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> ~ </a:s>
+                              <a:s r="234">
+                                 <a:s r="233">
+                                    <a:s>Concepts</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="234">
+                                    <a:s>&quot;W4SS single screening algorithm&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="33:3-36:3" xsi:type="Exists">
+            <operand localId="242" locator="33:9-36:3" xsi:type="Query">
+               <source localId="226" locator="34:5-34:51" alias="O">
+                  <expression localId="228" locator="34:5-34:49" name="TB screening algorithm Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="230" locator="35:7-35:64" xsi:type="Equivalent">
+                  <signature localId="240" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="241" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="236" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="235" asType="fhir:CodeableConcept" xsi:type="As">
+                        <operand localId="232" locator="35:13-35:19" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="238" xsi:type="ToConcept">
+                     <signature localId="239" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="234" locator="35:23-35:64" name="W4SS single screening algorithm" libraryName="Concepts" xsi:type="CodeRef"/>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="245" locator="42:1-46:3" name="Sequential positive screening algorithm with W4SS and CRP" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="TB screening algorithm"/>
+            <a:t name="pseudocode" value="&quot;TB screening algorithm&quot;='Sequential positive screening algorithm with W4SS and CRP'"/>
+            <a:s r="245">
+               <a:s>/*
+  @input: TB screening algorithm
+  @pseudocode: &quot;TB screening algorithm&quot;='Sequential positive screening algorithm with W4SS and CRP'
+  */
+define &quot;Sequential positive screening algorithm with W4SS and CRP&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s>exists</a:s>
+                  <a:s r="263">
+                     <a:s>(
+    </a:s>
+                     <a:s r="263">
+                        <a:s>
+                           <a:s r="247">
+                              <a:s r="249">
+                                 <a:s>
+                                    <a:s>Elements.&quot;TB screening algorithm Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="251">
+                           <a:s>where </a:s>
+                           <a:s r="251">
+                              <a:s r="253">
+                                 <a:s r="252">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="253">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> ~ </a:s>
+                              <a:s r="255">
+                                 <a:s r="254">
+                                    <a:s>Concepts</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="255">
+                                    <a:s>&quot;Sequential positive screening algorithm with W4SS and CRP&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="43:3-46:3" xsi:type="Exists">
+            <operand localId="263" locator="43:9-46:3" xsi:type="Query">
+               <source localId="247" locator="44:5-44:51" alias="O">
+                  <expression localId="249" locator="44:5-44:49" name="TB screening algorithm Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="251" locator="45:7-45:90" xsi:type="Equivalent">
+                  <signature localId="261" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="262" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="257" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="256" asType="fhir:CodeableConcept" xsi:type="As">
+                        <operand localId="253" locator="45:13-45:19" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="259" xsi:type="ToConcept">
+                     <signature localId="260" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="255" locator="45:23-45:90" name="Sequential positive screening algorithm with W4SS and CRP" libraryName="Concepts" xsi:type="CodeRef"/>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="266" locator="52:1-56:3" name="Screening with any TB symptom" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="TB screening algorithm"/>
+            <a:t name="pseudocode" value="&quot;TB screening algorithm&quot;='Screening with any TB symptom'"/>
+            <a:s r="266">
+               <a:s>/*
+  @input: TB screening algorithm
+  @pseudocode: &quot;TB screening algorithm&quot;='Screening with any TB symptom'
+  */
+define &quot;Screening with any TB symptom&quot;:
+  </a:s>
+               <a:s r="267">
+                  <a:s>exists</a:s>
+                  <a:s r="284">
+                     <a:s>(
+    </a:s>
+                     <a:s r="284">
+                        <a:s>
+                           <a:s r="268">
+                              <a:s r="270">
+                                 <a:s>
+                                    <a:s>Elements.&quot;TB screening algorithm Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="272">
+                           <a:s>where </a:s>
+                           <a:s r="272">
+                              <a:s r="274">
+                                 <a:s r="273">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="274">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> ~ </a:s>
+                              <a:s r="276">
+                                 <a:s r="275">
+                                    <a:s>Concepts</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="276">
+                                    <a:s>&quot;Screening with any TB symptom&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="267" locator="53:3-56:3" xsi:type="Exists">
+            <operand localId="284" locator="53:9-56:3" xsi:type="Query">
+               <source localId="268" locator="54:5-54:51" alias="O">
+                  <expression localId="270" locator="54:5-54:49" name="TB screening algorithm Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="272" locator="55:7-55:62" xsi:type="Equivalent">
+                  <signature localId="282" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="283" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="278" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="277" asType="fhir:CodeableConcept" xsi:type="As">
+                        <operand localId="274" locator="55:13-55:19" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="280" xsi:type="ToConcept">
+                     <signature localId="281" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="276" locator="55:23-55:62" name="Screening with any TB symptom" libraryName="Concepts" xsi:type="CodeRef"/>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="287" locator="62:1-63:47" name="Age 10 or older" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="Estimated age"/>
+            <a:t name="pseudocode" value="&quot;Estimated age&quot; >= 10 years"/>
+            <a:s r="287">
+               <a:s>/*
+ @input: Estimated age
+ @pseudocode: &quot;Estimated age&quot; >= 10 years
+ */
+define &quot;Age 10 or older&quot;:
+  </a:s>
+               <a:s r="288">
+                  <a:s r="290">
+                     <a:s r="289">
+                        <a:s>Elements</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="290">
+                        <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="291"> >= 10</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="288" locator="63:3-63:47" xsi:type="GreaterOrEqual">
+            <signature localId="292" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="293" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="290" locator="63:3-63:41" name="Current Patient Age In Years" libraryName="Elements" xsi:type="ExpressionRef"/>
+            <operand localId="291" locator="63:46-63:47" valueType="t:Integer" value="10" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="296" locator="69:1-70:46" name="Age under 15" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="Estimated age"/>
+            <a:t name="pseudocode" value="&quot;Estimated age&quot; &lt; 15 years"/>
+            <a:s r="296">
+               <a:s>/*
+ @input: Estimated age
+ @pseudocode: &quot;Estimated age&quot; &lt; 15 years
+ */
+define &quot;Age under 15&quot;:
+  </a:s>
+               <a:s r="297">
+                  <a:s r="299">
+                     <a:s r="298">
+                        <a:s>Elements</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="299">
+                        <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="300"> &lt; 15</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="297" locator="70:3-70:46" xsi:type="Less">
+            <signature localId="301" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="302" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="299" locator="70:3-70:41" name="Current Patient Age In Years" libraryName="Elements" xsi:type="ExpressionRef"/>
+            <operand localId="300" locator="70:45-70:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="305" locator="76:1-83:3" name="Has symptoms of TB" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="Symptoms of TB"/>
+            <a:t name="pseudocode" value="&quot;Symptoms of TB&quot; IN 'Current cough', 'Fever of 39 °C or greater', 'Weight loss (reported)', 'Night sweats'"/>
+            <a:s r="305">
+               <a:s>/*
+ @input: Symptoms of TB
+ @pseudocode: &quot;Symptoms of TB&quot; IN 'Current cough', 'Fever of 39 °C or greater', 'Weight loss (reported)', 'Night sweats'
+ */
+define &quot;Has symptoms of TB&quot;:
+  </a:s>
+               <a:s r="306">
+                  <a:s>exists</a:s>
+                  <a:s r="362">
+                     <a:s>(
+    </a:s>
+                     <a:s r="362">
+                        <a:s>
+                           <a:s r="307">
+                              <a:s r="309">
+                                 <a:s>
+                                    <a:s>Elements.&quot;Symptoms of TB Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="311">
+                           <a:s>where </a:s>
+                           <a:s r="311">
+                              <a:s r="312">
+                                 <a:s r="313">
+                                    <a:s r="314">
+                                       <a:s r="316">
+                                          <a:s r="315">
+                                             <a:s>O</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="316">
+                                             <a:s>value</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> ~ </a:s>
+                                       <a:s r="318">
+                                          <a:s r="317">
+                                             <a:s>Concepts</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="318">
+                                             <a:s>&quot;Current cough&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>
+         or </a:s>
+                                    <a:s r="326">
+                                       <a:s r="328">
+                                          <a:s r="327">
+                                             <a:s>O</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="328">
+                                             <a:s>value</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> ~ </a:s>
+                                       <a:s r="330">
+                                          <a:s r="329">
+                                             <a:s>Concepts</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="330">
+                                             <a:s>&quot;Fever of 39 °C or greater&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+         or </a:s>
+                                 <a:s r="338">
+                                    <a:s r="340">
+                                       <a:s r="339">
+                                          <a:s>O</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="340">
+                                          <a:s>value</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> ~ </a:s>
+                                    <a:s r="342">
+                                       <a:s r="341">
+                                          <a:s>Concepts</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="342">
+                                          <a:s>&quot;Weight loss reported&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+         or </a:s>
+                              <a:s r="350">
+                                 <a:s r="352">
+                                    <a:s r="351">
+                                       <a:s>O</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="352">
+                                       <a:s>value</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> ~ </a:s>
+                                 <a:s r="354">
+                                    <a:s r="353">
+                                       <a:s>Concepts</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="354">
+                                       <a:s>&quot;Night sweats&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="306" locator="77:3-83:3" xsi:type="Exists">
+            <operand localId="362" locator="77:9-83:3" xsi:type="Query">
+               <source localId="307" locator="78:5-78:43" alias="O">
+                  <expression localId="309" locator="78:5-78:41" name="Symptoms of TB Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="311" locator="79:7-82:45" xsi:type="Or">
+                  <operand localId="312" locator="79:13-81:53" xsi:type="Or">
+                     <operand localId="313" locator="79:13-80:58" xsi:type="Or">
+                        <operand localId="314" locator="79:13-79:46" xsi:type="Equivalent">
+                           <signature localId="324" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                           <signature localId="325" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="320" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="319" asType="fhir:CodeableConcept" xsi:type="As">
+                                 <operand localId="316" locator="79:13-79:19" path="value" scope="O" xsi:type="Property"/>
+                              </operand>
+                           </operand>
+                           <operand localId="322" xsi:type="ToConcept">
+                              <signature localId="323" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="318" locator="79:23-79:46" name="Current cough" libraryName="Concepts" xsi:type="CodeRef"/>
+                           </operand>
+                        </operand>
+                        <operand localId="326" locator="80:13-80:58" xsi:type="Equivalent">
+                           <signature localId="336" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                           <signature localId="337" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="332" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="331" asType="fhir:CodeableConcept" xsi:type="As">
+                                 <operand localId="328" locator="80:13-80:19" path="value" scope="O" xsi:type="Property"/>
+                              </operand>
+                           </operand>
+                           <operand localId="334" xsi:type="ToConcept">
+                              <signature localId="335" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="330" locator="80:23-80:58" name="Fever of 39 °C or greater" libraryName="Concepts" xsi:type="CodeRef"/>
+                           </operand>
+                        </operand>
+                     </operand>
+                     <operand localId="338" locator="81:13-81:53" xsi:type="Equivalent">
+                        <signature localId="348" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="349" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="344" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="343" asType="fhir:CodeableConcept" xsi:type="As">
+                              <operand localId="340" locator="81:13-81:19" path="value" scope="O" xsi:type="Property"/>
+                           </operand>
+                        </operand>
+                        <operand localId="346" xsi:type="ToConcept">
+                           <signature localId="347" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="342" locator="81:23-81:53" name="Weight loss reported" libraryName="Concepts" xsi:type="CodeRef"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="350" locator="82:13-82:45" xsi:type="Equivalent">
+                     <signature localId="360" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <signature localId="361" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="356" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="355" asType="fhir:CodeableConcept" xsi:type="As">
+                           <operand localId="352" locator="82:13-82:19" path="value" scope="O" xsi:type="Property"/>
+                        </operand>
+                     </operand>
+                     <operand localId="358" xsi:type="ToConcept">
+                        <signature localId="359" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="354" locator="82:23-82:45" name="Night sweats" libraryName="Concepts" xsi:type="CodeRef"/>
+                     </operand>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="365" locator="89:1-93:32" name="Does not have symptoms of TB" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="Symptoms of TB"/>
+            <a:t name="pseudocode" value="&quot;Symptoms of TB&quot; = 'None'"/>
+            <a:s r="365">
+               <a:s>/*
+ @input: Symptoms of TB
+ @pseudocode: &quot;Symptoms of TB&quot; = 'None'
+ */
+define &quot;Does not have symptoms of TB&quot;:
+  </a:s>
+               <a:s r="366">
+                  <a:s r="367">
+                     <a:s>exists</a:s>
+                     <a:s r="384">
+                        <a:s>(
+    </a:s>
+                        <a:s r="384">
+                           <a:s>
+                              <a:s r="368">
+                                 <a:s r="370">
+                                    <a:s>
+                                       <a:s>Elements.&quot;Symptoms of TB Observation&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> O</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+      </a:s>
+                           <a:s r="372">
+                              <a:s>where </a:s>
+                              <a:s r="372">
+                                 <a:s r="374">
+                                    <a:s r="373">
+                                       <a:s>O</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="374">
+                                       <a:s>value</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> ~ </a:s>
+                                 <a:s r="376">
+                                    <a:s r="375">
+                                       <a:s>Concepts</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="376">
+                                       <a:s>&quot;None&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+  )</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> or </a:s>
+                  <a:s r="385">
+                     <a:s>not</a:s>
+                     <a:s r="386">
+                        <a:s>(</a:s>
+                        <a:s r="386">
+                           <a:s>&quot;Has symptoms of TB&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="366" locator="90:3-93:32" xsi:type="Or">
+            <operand localId="367" locator="90:3-93:3" xsi:type="Exists">
+               <operand localId="384" locator="90:9-93:3" xsi:type="Query">
+                  <source localId="368" locator="91:5-91:43" alias="O">
+                     <expression localId="370" locator="91:5-91:41" name="Symptoms of TB Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+                  </source>
+                  <where localId="372" locator="92:7-92:37" xsi:type="Equivalent">
+                     <signature localId="382" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <signature localId="383" name="t:Concept" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="378" name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="377" asType="fhir:CodeableConcept" xsi:type="As">
+                           <operand localId="374" locator="92:13-92:19" path="value" scope="O" xsi:type="Property"/>
+                        </operand>
+                     </operand>
+                     <operand localId="380" xsi:type="ToConcept">
+                        <signature localId="381" name="t:Code" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="376" locator="92:23-92:37" name="None" libraryName="Concepts" xsi:type="CodeRef"/>
+                     </operand>
+                  </where>
+               </operand>
+            </operand>
+            <operand localId="385" locator="93:8-93:32" xsi:type="Not">
+               <operand localId="386" locator="93:11-93:32" name="Has symptoms of TB" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="389" locator="99:1-102:4" name="No C-reactive protein test done" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="C-reactive protein test result"/>
+            <a:t name="pseudocode"/>
+            <a:s r="389">
+               <a:s>/*
+ @input: C-reactive protein test result
+ @pseudocode:
+ */
+define &quot;No C-reactive protein test done&quot;:
+  </a:s>
+               <a:s r="390">
+                  <a:s>not</a:s>
+                  <a:s r="391">
+                     <a:s>(</a:s>
+                     <a:s r="391">
+                        <a:s>exists</a:s>
+                        <a:s r="393">
+                           <a:s>(
+    </a:s>
+                           <a:s r="393">
+                              <a:s r="392">
+                                 <a:s>Elements</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="393">
+                                 <a:s>&quot;C reactive protein test result&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+  )</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="390" locator="100:3-102:4" xsi:type="Not">
+            <operand localId="391" locator="100:6-102:4" xsi:type="Exists">
+               <operand localId="393" locator="100:13-102:3" name="C reactive protein test result" libraryName="Elements" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="396" locator="108:1-112:3" name="C-reactive protein at or under 5mg/L" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="C-reactive protein test result"/>
+            <a:t name="pseudocode" value="&quot;C reactive protein test result&quot; ≤ 5 mg/L"/>
+            <a:s r="396">
+               <a:s>/*
+ @input: C-reactive protein test result
+ @pseudocode: &quot;C reactive protein test result&quot; ≤ 5 mg/L
+ */
+define &quot;C-reactive protein at or under 5mg/L&quot;:
+  </a:s>
+               <a:s r="397">
+                  <a:s>exists</a:s>
+                  <a:s r="410">
+                     <a:s>(
+    </a:s>
+                     <a:s r="410">
+                        <a:s>
+                           <a:s r="398">
+                              <a:s r="400">
+                                 <a:s>
+                                    <a:s>Elements.&quot;C reactive protein test result&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="402">
+                           <a:s>where </a:s>
+                           <a:s r="402">
+                              <a:s r="404">
+                                 <a:s r="403">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="404">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="405"> &lt; 5</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="397" locator="109:3-112:3" xsi:type="Exists">
+            <operand localId="410" locator="109:9-112:3" xsi:type="Query">
+               <source localId="398" locator="110:5-110:47" alias="O">
+                  <expression localId="400" locator="110:5-110:45" name="C reactive protein test result" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="402" locator="111:7-111:23" xsi:type="Less">
+                  <signature localId="408" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="409" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="407" name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="406" asType="fhir:integer" xsi:type="As">
+                        <operand localId="404" locator="111:13-111:19" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="405" locator="111:23" valueType="t:Integer" value="5" xsi:type="Literal"/>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="413" locator="118:1-122:3" name="C-reactive protein over 5mg/L" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="C-reactive protein test result"/>
+            <a:t name="pseudocode" value="&quot;C reactive protein test result&quot; > 5 mg/L"/>
+            <a:s r="413">
+               <a:s>/*
+ @input: C-reactive protein test result
+ @pseudocode: &quot;C reactive protein test result&quot; > 5 mg/L
+ */
+define &quot;C-reactive protein over 5mg/L&quot;:
+  </a:s>
+               <a:s r="414">
+                  <a:s>exists</a:s>
+                  <a:s r="427">
+                     <a:s>(
+    </a:s>
+                     <a:s r="427">
+                        <a:s>
+                           <a:s r="415">
+                              <a:s r="417">
+                                 <a:s>
+                                    <a:s>Elements.&quot;C reactive protein test result&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="419">
+                           <a:s>where </a:s>
+                           <a:s r="419">
+                              <a:s r="421">
+                                 <a:s r="420">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="421">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="422"> > 5</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="414" locator="119:3-122:3" xsi:type="Exists">
+            <operand localId="427" locator="119:9-122:3" xsi:type="Query">
+               <source localId="415" locator="120:5-120:47" alias="O">
+                  <expression localId="417" locator="120:5-120:45" name="C reactive protein test result" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="419" locator="121:7-121:23" xsi:type="Greater">
+                  <signature localId="425" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="426" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="424" name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="423" asType="fhir:integer" xsi:type="As">
+                        <operand localId="421" locator="121:13-121:19" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="422" locator="121:23" valueType="t:Integer" value="5" xsi:type="Literal"/>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="430" locator="128:1-132:3" name="History of contact with a person with TB" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="input" value="History of contact with a person with TB"/>
+            <a:t name="pseudocode" value="&quot;History of contact with a person with TB&quot;=True"/>
+            <a:s r="430">
+               <a:s>/*
+ @input: History of contact with a person with TB
+ @pseudocode: &quot;History of contact with a person with TB&quot;=True
+ */
+define &quot;History of contact with a person with TB&quot;:
+  </a:s>
+               <a:s r="431">
+                  <a:s>exists</a:s>
+                  <a:s r="444">
+                     <a:s>(
+    </a:s>
+                     <a:s r="444">
+                        <a:s>
+                           <a:s r="432">
+                              <a:s r="434">
+                                 <a:s>
+                                    <a:s>Elements.&quot;History of contact with a person with TB Observation&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> O</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      </a:s>
+                        <a:s r="436">
+                           <a:s>where </a:s>
+                           <a:s r="436">
+                              <a:s r="438">
+                                 <a:s r="437">
+                                    <a:s>O</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="438">
+                                    <a:s>value</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="439"> = true</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="129:3-132:3" xsi:type="Exists">
+            <operand localId="444" locator="129:9-132:3" xsi:type="Query">
+               <source localId="432" locator="130:5-130:69" alias="O">
+                  <expression localId="434" locator="130:5-130:67" name="History of contact with a person with TB Observation" libraryName="Elements" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="436" locator="131:7-131:26" xsi:type="Equal">
+                  <signature localId="442" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="443" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="441" name="ToBoolean" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="440" asType="fhir:boolean" xsi:type="As">
+                        <operand localId="438" locator="131:13-131:19" path="value" scope="O" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand localId="439" locator="131:23-131:26" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="447" locator="137:1-179:4" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="447">
+               <a:s>/*
+ @dynamicValue: Guidance
+ */
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="541">
+                  <a:s>Combine(</a:s>
+                  <a:s r="448">
+                     <a:s>{
+    </a:s>
+                     <a:s r="449">
+                        <a:s>if </a:s>
+                        <a:s r="450">
+                           <a:s r="451">
+                              <a:s r="452">
+                                 <a:s>&quot;W4SS single screening algorithm&quot;</a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="453">
+                                 <a:s>&quot;Age 10 or older&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="454">
+                              <a:s>&quot;Has symptoms of TB&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="455">
+                           <a:s>'Screen positive for TB.  Refer for diagnostic evaluation including mWRD &amp; clinical evaluation as indicated.  
+
+In PLHIV, diagnostic testing for TB with LF-LAM and other methods is usually considered early on.  See WHO consolidated guidelines on tuberculosis, Module 3: Diagnosis - Rapid diagnostics for tuberculosis detection.  
+
+LF-LAM can assist TB diagnosis among people with advanced HIV disease (AHD) with symptoms and signs of TB. For inpatients with CD4 count ≤200 cells/mm3, outpatients with CD4 count ≤100 cells/mm3, or individuals with any CD4 count with symptoms of AHD or if seriously ill (See WHO Consolidated guidelines on HIV prevention, testing, treatment, service delivery and monitoring: recommendations for a public health approach (2021))'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="457">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="459">
+                        <a:s>if </a:s>
+                        <a:s r="460">
+                           <a:s r="461">
+                              <a:s r="462">
+                                 <a:s>&quot;W4SS single screening algorithm&quot;</a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="463">
+                                 <a:s>&quot;Age 10 or older&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="464">
+                              <a:s>&quot;Does not have symptoms of TB&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="465">
+                           <a:s>'Screen negative for TB, assess for TPT.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="467">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="469">
+                        <a:s>if </a:s>
+                        <a:s r="470">
+                           <a:s r="471">
+                              <a:s r="472">
+                                 <a:s>&quot;Sequential positive screening algorithm with W4SS and CRP&quot;</a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="473">
+                                 <a:s>&quot;Age 10 or older&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="474">
+                              <a:s>&quot;Does not have symptoms of TB&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="475">
+                           <a:s>'Screen negative for TB.  Assess for TPT.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="477">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="479">
+                        <a:s>if </a:s>
+                        <a:s r="480">
+                           <a:s r="481">
+                              <a:s r="482">
+                                 <a:s r="483">
+                                    <a:s>&quot;Sequential positive screening algorithm with W4SS and CRP&quot;</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="484">
+                                    <a:s>&quot;Age 10 or older&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="485">
+                                 <a:s>&quot;Has symptoms of TB&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="486">
+                              <a:s>&quot;No C-reactive protein test done&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="487">
+                           <a:s>'Perform C reative protein test.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="489">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="491">
+                        <a:s>if </a:s>
+                        <a:s r="492">
+                           <a:s r="493">
+                              <a:s r="494">
+                                 <a:s r="495">
+                                    <a:s>&quot;Sequential positive screening algorithm with W4SS and CRP&quot;</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="496">
+                                    <a:s>&quot;Age 10 or older&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="497">
+                                 <a:s>&quot;Has symptoms of TB&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="498">
+                              <a:s>&quot;C-reactive protein at or under 5mg/L&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="499">
+                           <a:s>'Screen positive for TB.  Refer for diagnostic evaluation including mWRD &amp; clinical evaluation as indicated.  
+
+In PLHIV, diagnostic testing for TB with LF-LAM and other methods is usually considered early on.  
+
+Currently, the c-reative protein cut-off value of > 5 mg/L is recommended, as it is the lowest threshold indicating abnormality in many clinical settings and because it is the most sensitive. At this cut-off, CRP has a similar sensitivity and higher or similar specificity to symptom screening in all subpopulations of adults and adolescents living with HIV tested (Section 5.2.2, 2021 WHO operation handbook on tuberculosis, Module 2: screening).  
+
+LF-LAM can assist TB diagnosis among people with advanced HIV disease (AHD) with symptoms and signs of TB. For inpatients with CD4 count ≤200 cells/mm3, outpatients with CD4 count ≤100 cells/mm3, or individuals with any CD4 count with symptoms of AHD or if seriously ill.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="501">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="503">
+                        <a:s>if </a:s>
+                        <a:s r="504">
+                           <a:s r="505">
+                              <a:s r="506">
+                                 <a:s r="507">
+                                    <a:s>&quot;Sequential positive screening algorithm with W4SS and CRP&quot;</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="508">
+                                    <a:s>&quot;Age 10 or older&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="509">
+                                 <a:s>&quot;Has symptoms of TB&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="510">
+                              <a:s>&quot;C-reactive protein over 5mg/L&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="511">
+                           <a:s>'In PLHIV, diagnostic testing for TB with LF-LAM and other methods is usually considered early on.  
+
+Currently, the c-reative protein cut-off value of > 5 mg/L is recommended, as it is the lowest threshold indicating abnormality in many clinical settings and because it is the most sensitive. At this cut-off, CRP has a similar sensitivity and higher or similar specificity to symptom screening in all subpopulations of adults and adolescents living with HIV tested (Section 5.2.2, 2021 WHO operation handbook on tuberculosis, Module 2: screening).  
+
+LF-LAM can assist TB diagnosis among people with advanced HIV disease (AHD) with symptoms and signs of TB. For inpatients with CD4 count ≤200 cells/mm3, outpatients with CD4 count ≤100 cells/mm3, or individuals with any CD4 count with symptoms of AHD or if seriously ill.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="513">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="515">
+                        <a:s>if </a:s>
+                        <a:s r="516">
+                           <a:s r="517">
+                              <a:s r="518">
+                                 <a:s r="519">
+                                    <a:s>&quot;Screening with any TB symptom&quot;</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="520">
+                                    <a:s>&quot;Age under 15&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="521">
+                                 <a:s>&quot;Has symptoms of TB&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="522">
+                              <a:s>&quot;History of contact with a person with TB&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="523">
+                           <a:s>'Screen positive for TB.  Refer for diagnostic evaluation including mWRD &amp; clinical evaluation as indicated.  
+
+Any child &lt; 15 years who has had close contact with someone with TB disease should be screened for TB with a symptom screen and/or CXR as part of active contact-tracing (see Algorithm A.5.1 in Annex 5). Symptoms that should be used to screen for TB are cough, fever and poor weight gain (or weight loss). In young children, reduced playfulness or lethargy should also be included in symptom screening; cough may be absent.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="525">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+    </a:s>
+                     <a:s r="527">
+                        <a:s>if </a:s>
+                        <a:s r="528">
+                           <a:s r="529">
+                              <a:s r="530">
+                                 <a:s r="531">
+                                    <a:s>&quot;Screening with any TB symptom&quot;</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="532">
+                                    <a:s>&quot;Age under 15&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and </a:s>
+                              <a:s r="533">
+                                 <a:s>&quot;Does not have symptoms of TB&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="534">
+                              <a:s>&quot;History of contact with a person with TB&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      then </a:s>
+                        <a:s r="535">
+                           <a:s>'Screen negative for TB.  Refer for TPT.'</a:s>
+                        </a:s>
+                        <a:s>
+      else </a:s>
+                        <a:s r="537">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  }</a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="541" locator="138:3-179:4" xsi:type="Combine">
+            <source localId="448" locator="138:11-179:3" xsi:type="List">
+               <element localId="449" locator="139:5-145:13" xsi:type="If">
+                  <condition localId="450" locator="139:8-139:87" xsi:type="And">
+                     <operand localId="451" locator="139:8-139:62" xsi:type="And">
+                        <operand localId="452" locator="139:8-139:40" name="W4SS single screening algorithm" xsi:type="ExpressionRef"/>
+                        <operand localId="453" locator="139:46-139:62" name="Age 10 or older" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="454" locator="139:68-139:87" name="Has symptoms of TB" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="455" locator="140:12-140:771" valueType="t:String" value="Screen positive for TB.  Refer for diagnostic evaluation including mWRD &amp; clinical evaluation as indicated.  &#xa;&#xa;In PLHIV, diagnostic testing for TB with LF-LAM and other methods is usually considered early on.  See WHO consolidated guidelines on tuberculosis, Module 3: Diagnosis - Rapid diagnostics for tuberculosis detection.  &#xa;&#xa;LF-LAM can assist TB diagnosis among people with advanced HIV disease (AHD) with symptoms and signs of TB. For inpatients with CD4 count ≤200 cells/mm3, outpatients with CD4 count ≤100 cells/mm3, or individuals with any CD4 count with symptoms of AHD or if seriously ill (See WHO Consolidated guidelines on HIV prevention, testing, treatment, service delivery and monitoring: recommendations for a public health approach (2021))" xsi:type="Literal"/>
+                  <else localId="457" locator="145:12-145:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="459" locator="146:5-148:13" xsi:type="If">
+                  <condition localId="460" locator="146:8-146:97" xsi:type="And">
+                     <operand localId="461" locator="146:8-146:62" xsi:type="And">
+                        <operand localId="462" locator="146:8-146:40" name="W4SS single screening algorithm" xsi:type="ExpressionRef"/>
+                        <operand localId="463" locator="146:46-146:62" name="Age 10 or older" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="464" locator="146:68-146:97" name="Does not have symptoms of TB" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="465" locator="147:12-147:52" valueType="t:String" value="Screen negative for TB, assess for TPT." xsi:type="Literal"/>
+                  <else localId="467" locator="148:12-148:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="469" locator="149:5-151:13" xsi:type="If">
+                  <condition localId="470" locator="149:8-149:123" xsi:type="And">
+                     <operand localId="471" locator="149:8-149:88" xsi:type="And">
+                        <operand localId="472" locator="149:8-149:66" name="Sequential positive screening algorithm with W4SS and CRP" xsi:type="ExpressionRef"/>
+                        <operand localId="473" locator="149:72-149:88" name="Age 10 or older" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="474" locator="149:94-149:123" name="Does not have symptoms of TB" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="475" locator="150:12-150:53" valueType="t:String" value="Screen negative for TB.  Assess for TPT." xsi:type="Literal"/>
+                  <else localId="477" locator="151:12-151:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="479" locator="152:5-154:13" xsi:type="If">
+                  <condition localId="480" locator="152:8-152:151" xsi:type="And">
+                     <operand localId="481" locator="152:8-152:113" xsi:type="And">
+                        <operand localId="482" locator="152:8-152:88" xsi:type="And">
+                           <operand localId="483" locator="152:8-152:66" name="Sequential positive screening algorithm with W4SS and CRP" xsi:type="ExpressionRef"/>
+                           <operand localId="484" locator="152:72-152:88" name="Age 10 or older" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="485" locator="152:94-152:113" name="Has symptoms of TB" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="486" locator="152:119-152:151" name="No C-reactive protein test done" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="487" locator="153:12-153:44" valueType="t:String" value="Perform C reative protein test." xsi:type="Literal"/>
+                  <else localId="489" locator="154:12-154:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="491" locator="155:5-163:13" xsi:type="If">
+                  <condition localId="492" locator="155:8-155:156" xsi:type="And">
+                     <operand localId="493" locator="155:8-155:113" xsi:type="And">
+                        <operand localId="494" locator="155:8-155:88" xsi:type="And">
+                           <operand localId="495" locator="155:8-155:66" name="Sequential positive screening algorithm with W4SS and CRP" xsi:type="ExpressionRef"/>
+                           <operand localId="496" locator="155:72-155:88" name="Age 10 or older" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="497" locator="155:94-155:113" name="Has symptoms of TB" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="498" locator="155:119-155:156" name="C-reactive protein at or under 5mg/L" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="499" locator="156:12-156:947" valueType="t:String" value="Screen positive for TB.  Refer for diagnostic evaluation including mWRD &amp; clinical evaluation as indicated.  &#xa;&#xa;In PLHIV, diagnostic testing for TB with LF-LAM and other methods is usually considered early on.  &#xa;&#xa;Currently, the c-reative protein cut-off value of > 5 mg/L is recommended, as it is the lowest threshold indicating abnormality in many clinical settings and because it is the most sensitive. At this cut-off, CRP has a similar sensitivity and higher or similar specificity to symptom screening in all subpopulations of adults and adolescents living with HIV tested (Section 5.2.2, 2021 WHO operation handbook on tuberculosis, Module 2: screening).  &#xa;&#xa;LF-LAM can assist TB diagnosis among people with advanced HIV disease (AHD) with symptoms and signs of TB. For inpatients with CD4 count ≤200 cells/mm3, outpatients with CD4 count ≤100 cells/mm3, or individuals with any CD4 count with symptoms of AHD or if seriously ill." xsi:type="Literal"/>
+                  <else localId="501" locator="163:12-163:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="503" locator="164:5-170:13" xsi:type="If">
+                  <condition localId="504" locator="164:8-164:149" xsi:type="And">
+                     <operand localId="505" locator="164:8-164:113" xsi:type="And">
+                        <operand localId="506" locator="164:8-164:88" xsi:type="And">
+                           <operand localId="507" locator="164:8-164:66" name="Sequential positive screening algorithm with W4SS and CRP" xsi:type="ExpressionRef"/>
+                           <operand localId="508" locator="164:72-164:88" name="Age 10 or older" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="509" locator="164:94-164:113" name="Has symptoms of TB" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="510" locator="164:119-164:149" name="C-reactive protein over 5mg/L" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="511" locator="165:12-165:836" valueType="t:String" value="In PLHIV, diagnostic testing for TB with LF-LAM and other methods is usually considered early on.  &#xa;&#xa;Currently, the c-reative protein cut-off value of > 5 mg/L is recommended, as it is the lowest threshold indicating abnormality in many clinical settings and because it is the most sensitive. At this cut-off, CRP has a similar sensitivity and higher or similar specificity to symptom screening in all subpopulations of adults and adolescents living with HIV tested (Section 5.2.2, 2021 WHO operation handbook on tuberculosis, Module 2: screening).  &#xa;&#xa;LF-LAM can assist TB diagnosis among people with advanced HIV disease (AHD) with symptoms and signs of TB. For inpatients with CD4 count ≤200 cells/mm3, outpatients with CD4 count ≤100 cells/mm3, or individuals with any CD4 count with symptoms of AHD or if seriously ill." xsi:type="Literal"/>
+                  <else localId="513" locator="170:12-170:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="515" locator="171:5-175:13" xsi:type="If">
+                  <condition localId="516" locator="171:8-171:129" xsi:type="And">
+                     <operand localId="517" locator="171:8-171:82" xsi:type="And">
+                        <operand localId="518" locator="171:8-171:57" xsi:type="And">
+                           <operand localId="519" locator="171:8-171:38" name="Screening with any TB symptom" xsi:type="ExpressionRef"/>
+                           <operand localId="520" locator="171:44-171:57" name="Age under 15" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="521" locator="171:63-171:82" name="Has symptoms of TB" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="522" locator="171:88-171:129" name="History of contact with a person with TB" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="523" locator="172:12-172:546" valueType="t:String" value="Screen positive for TB.  Refer for diagnostic evaluation including mWRD &amp; clinical evaluation as indicated.  &#xa;&#xa;Any child &lt; 15 years who has had close contact with someone with TB disease should be screened for TB with a symptom screen and/or CXR as part of active contact-tracing (see Algorithm A.5.1 in Annex 5). Symptoms that should be used to screen for TB are cough, fever and poor weight gain (or weight loss). In young children, reduced playfulness or lethargy should also be included in symptom screening; cough may be absent." xsi:type="Literal"/>
+                  <else localId="525" locator="175:12-175:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="527" locator="176:5-178:13" xsi:type="If">
+                  <condition localId="528" locator="176:8-176:139" xsi:type="And">
+                     <operand localId="529" locator="176:8-176:92" xsi:type="And">
+                        <operand localId="530" locator="176:8-176:57" xsi:type="And">
+                           <operand localId="531" locator="176:8-176:38" name="Screening with any TB symptom" xsi:type="ExpressionRef"/>
+                           <operand localId="532" locator="176:44-176:57" name="Age under 15" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="533" locator="176:63-176:92" name="Does not have symptoms of TB" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="534" locator="176:98-176:139" name="History of contact with a person with TB" xsi:type="ExpressionRef"/>
+                  </condition>
+                  <then localId="535" locator="177:12-177:52" valueType="t:String" value="Screen negative for TB.  Refer for TPT." xsi:type="Literal"/>
+                  <else localId="537" locator="178:12-178:13" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+            </source>
+         </expression>
+      </def>
+   </statements>
+</library>

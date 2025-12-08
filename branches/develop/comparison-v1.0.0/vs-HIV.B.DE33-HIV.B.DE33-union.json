@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-437",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-437",
+  "name" : "UnionHIVBDE33AndHIVBDE33",
+  "title" : "Union of Partner HIV status (reported) ValueSet And Partner HIV status (reported) ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE34",
+        "display" : "HIV-positive"
+      },
+      {
+        "code" : "HIV.B.DE35",
+        "display" : "HIV-negative"
+      },
+      {
+        "code" : "HIV.B.DE36",
+        "display" : "Unknown"
+      }]
+    }]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "7055b242-cd49-4b29-a773-8908a18058ac-794",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/7055b242-cd49-4b29-a773-8908a18058ac-794",
+  "name" : "UnionHIVDDE706AndHIVDDE706",
+  "title" : "Union of Cervical cancer screening outcome ValueSet And Cervical cancer screening outcome ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:19:18+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.D.DE707",
+        "display" : "Positive for cervical precancer lesions"
+      },
+      {
+        "code" : "HIV.D.DE708",
+        "display" : "Negative for cervical precancer lesions"
+      }]
+    }]
+  }
+}

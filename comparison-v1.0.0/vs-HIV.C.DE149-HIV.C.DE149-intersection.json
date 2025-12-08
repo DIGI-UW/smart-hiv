@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-510",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-510",
+  "name" : "IntersectionHIVCDE149AndHIVCDE149",
+  "title" : "Intersection of Sexual and reproductive health integrated services ValueSet And Sexual and reproductive health integrated services ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.C.DE150",
+        "display" : "Contraception and family planning"
+      },
+      {
+        "code" : "HIV.C.DE151",
+        "display" : "Check pregnancy status"
+      },
+      {
+        "code" : "HIV.C.DE152",
+        "display" : "Prevent mother-to-child transmission"
+      },
+      {
+        "code" : "HIV.C.DE153",
+        "display" : "Cervical cancer screening and treatment"
+      },
+      {
+        "code" : "HIV.C.DE154",
+        "display" : "Anal cancer screening (for men who have sex with men)"
+      },
+      {
+        "code" : "HIV.C.DE155",
+        "display" : "STI testing and treatment"
+      }]
+    }]
+  }
+}

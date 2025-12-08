@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fdc0d19e-655d-4eea-b366-a6304b580a33-413",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/fdc0d19e-655d-4eea-b366-a6304b580a33-413",
+  "name" : "UnionHIVBDE276AndHIVBDE276",
+  "title" : "Union of Neisseria gonorrhoeae test type ValueSet And Neisseria gonorrhoeae test type ValueSet",
+  "status" : "active",
+  "date" : "2025-12-08T16:47:48+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.B.DE277",
+        "display" : "NAAT"
+      },
+      {
+        "code" : "HIV.B.DE278",
+        "display" : "POC Test"
+      },
+      {
+        "code" : "HIV.B.DE279",
+        "display" : "Culture"
+      },
+      {
+        "code" : "HIV.B.DE280",
+        "display" : "Microscopy"
+      },
+      {
+        "code" : "HIV.B.DE281",
+        "display" : "Other"
+      }]
+    }]
+  }
+}

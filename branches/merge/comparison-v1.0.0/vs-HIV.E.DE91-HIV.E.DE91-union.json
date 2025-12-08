@@ -1,0 +1,25 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-890",
+  "url" : "http://hl7.org/fhir/comparison/ValueSet/ed5a7cf6-0e8b-4c4a-8892-fbdd874fcf3c-890",
+  "name" : "UnionHIVEDE91AndHIVEDE91",
+  "title" : "Union of Gender of infant ValueSet And Gender of infant ValueSet",
+  "status" : "active",
+  "date" : "2025-07-24T19:32:16+00:00",
+  "compose" : {
+    "include" : [{
+      "concept" : [{
+        "code" : "HIV.E.DE92",
+        "display" : "Female"
+      },
+      {
+        "code" : "HIV.E.DE93",
+        "display" : "Male"
+      },
+      {
+        "code" : "HIV.E.DE94",
+        "display" : "Other"
+      }]
+    }]
+  }
+}
